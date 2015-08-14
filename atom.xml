@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+    <title>Chase Seibert | blog</title>
+    <link href="http://chase-seibert.github.com/blog/atom.xml" rel="self"/>
+    <link href="http://chase-seibert.github.com/blog/" />
+    <updated>2015-08-14T13:32:36-07:00</updated>
+    <id>http://chase-seibert.github.com/blog/</id>
+    <author>
+        <name>Chase Seibert</name>
+        <email>chase.seibert+blog@gmail.com</email>
+    </author>
+
+    
+        <entry>
+            <title>Getting Started with Sphinx docs</title>
+            <link href="/blog/2015/08/14/getting-started-with-sphinx.html"/>
+            <updated>2015-08-14T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/08/14/getting-started-with-sphinx</id>
+            <content type="html">&lt;p&gt;Everyone knows that you should write documentation for your code. Writing documentation actually is not that hard. Like any type of writing, the hardest part is beginning. So how do you begin writing documentation for your Python projects?&lt;/p&gt;
+
+&lt;h1&gt;Enter Sphinx&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://sphinx-doc.org/&quot;&gt;Sphinx&lt;/a&gt; is the de-facto standard in the Python community for generating documentation for your projects. It&amp;#39;s simple to create HTML/PDF files with code samples, tables of contents, and built in search. Many popular projects host their Sphinx docs on &lt;a href=&quot;https://readthedocs.org/&quot;&gt;readthedocs.org&lt;/a&gt;. A couple of good examples are &lt;a href=&quot;http://celery.readthedocs.org/en/latest/getting-started/first-steps-with-celery.html#application&quot;&gt;celery&lt;/a&gt; and &lt;a href=&quot;http://flask.readthedocs.org/en/latest/quickstart/&quot;&gt;flask&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;One of the key feature of Sphinx is that it allows you to generate as much of the documentation as possible from comments in your Python code. It can also automatically pull the signatures of your modules, classes, functions and methods. Together, these features allow you to keep most of your documentation up to date automatically. Of course, you will also want to write higher level pages on specific topics, and you can easily define those in either &lt;a href=&quot;http://daringfireball.net/projects/markdown/&quot;&gt;Markdown&lt;/a&gt; or &lt;a href=&quot;http://docutils.sourceforge.net/rst.html&quot;&gt;reStructuredText&lt;/a&gt;, both of which render as rich text when viewed directly in your GitHub repository.&lt;/p&gt;
+
+&lt;h1&gt;Quickstart&lt;/h1&gt;
+
+&lt;p&gt;First, you need to install Sphinx. Then you run their quickstart command, which prompts you for configuration options. You&amp;#39;re pretty safe use the defaults in most cases. &lt;strong&gt;The only sphinx-quickstart options I typically customize are enabling autodoc and using &amp;quot;docs&amp;quot; as the project root.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Here are the basic console commands. You would run these from inside your project root.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo pip install sphinx
+sphinx-quickstart
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;docs
+make html
+open _build/html/index.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will be sufficient to get a basic HTML document. Typically my next steps will be to integrated with my project README, and configure autodoc to find my code.&lt;/p&gt;
+
+&lt;h1&gt;Update your README&lt;/h1&gt;
+
+&lt;p&gt;I usually have my READMEs defined in Markdown, but for the purposes of Sphinx I think it&amp;#39;s worth it to switch to reStructuredText, simply so that you can include the README as the first page of your docs. reStructuredText is pretty simple, here is a quick example of a &lt;code&gt;README.rst&lt;/code&gt; to get you started.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;===========================================&lt;/span&gt;
+ IPython: Productive Interactive &lt;span class=&quot;nv&quot;&gt;Computing&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;===========================================&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;Overview&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;========&lt;/span&gt;
+
+Welcome to IPython.  Our full documentation is available on &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;our website
+&amp;lt;http://ipython.org/documentation.html&amp;gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;_&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; you downloaded a built &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;
+distribution the &lt;span class=&quot;sb&quot;&gt;``&lt;/span&gt;docs/source&lt;span class=&quot;sb&quot;&gt;``&lt;/span&gt; directory contains the plaintext version of
+these manuals.  If you have Sphinx installed, you can build them by typing
+&lt;span class=&quot;sb&quot;&gt;``&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;docs&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; make html&lt;span class=&quot;sb&quot;&gt;``&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;browsing.
+
+Instant &lt;span class=&quot;nv&quot;&gt;running&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;===============&lt;/span&gt;
+
+You can run IPython from this directory without even installing it system-wide
+by typing at the terminal::
+
+   python -m IPython
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This example illustrates how to format titles, subtitles, links, inline code and code blocks.&lt;/p&gt;
+
+&lt;h1&gt;Include the README.rst in your docs&lt;/h1&gt;
+
+&lt;p&gt;Edit your &lt;code&gt;docs/index.rst&lt;/code&gt; file to include the README:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;.. include:: ../README.rst
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If that&amp;#39;s all that&amp;#39;s in your index file, and you run &lt;code&gt;make html&lt;/code&gt; again, you should see your README contents.&lt;/p&gt;
+
+&lt;h1&gt;Break out into more than one file&lt;/h1&gt;
+
+&lt;p&gt;Next, we will start breaking out our documentation into multiples files. Simply create a new reStructuredText file along side &lt;code&gt;index.rst&lt;/code&gt;. You can call it anything, for example &lt;code&gt;example.rst&lt;/code&gt;. You can then include this file in your index like so:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;.. include:: ../README.rst
+
+Read More
+---------
+
+.. toctree::
+   :maxdepth: 2
+
+   example
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This tells Sphinx to render your README, followed by a subtitle of &amp;quot;Read More&amp;quot;, followed by a list of other documents, one of which is your external &lt;code&gt;example.rst&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;h1&gt;Start using autodoc&lt;/h1&gt;
+
+&lt;p&gt;In that &lt;code&gt;example.rst&lt;/code&gt;, you could put the following.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Some &lt;span class=&quot;nv&quot;&gt;Examples&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;=============&lt;/span&gt;
+
+Here are some examples to get you started.
+
+.. automodule:: src.examples
+    :members:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will look at your code in &lt;code&gt;src/examples.py&lt;/code&gt; for classes, functions and methods. Each one will be listed in this section of the docs, along with any docstrings that where present. See the following example. All of these sections in the text are optional.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;public_fn_with_sphinxy_docstring&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;This function does something.&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;    write as much as you want here&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;    here is a code sample:&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;    &amp;gt;&amp;gt;&amp;gt; from example import public_fn_with_sphinxy_docstring&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    &amp;gt;&amp;gt;&amp;gt; public_fn_with_sphinxy_docstring(&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    ...     &amp;#39;foobar&amp;#39;,&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    ...     &amp;#39;pending&amp;#39;)&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    0&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;    :param name: The name to use.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    :type name: str.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    :param state: Current state to be in.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    :type state: bool.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    :returns:  int -- the return code.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    :raises: AttributeError, KeyError&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Automating Doc Generation&lt;/h1&gt;
+
+&lt;p&gt;If you use Jenkins for your continuous integration system, you can use the &lt;a href=&quot;https://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin&quot;&gt;HTML Publisher Plugin&lt;/a&gt; to automatically build the documentation every time you merge. It will also host the HTML for you, right in Jenkins.&lt;/p&gt;
+
+&lt;h1&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://pythonhosted.org/an_example_pypi_project/sphinx.html&quot;&gt;Sphinx Basics&lt;/a&gt; - Good listing of basic reStructuredText syntax for Spinx&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        </entry>
+    
+        <entry>
+            <title>Customizing Celery with Task Arguments</title>
+            <link href="/blog/2015/07/24/custom-celery-arguments.html"/>
+            <updated>2015-07-24T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/07/24/custom-celery-arguments</id>
+            <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.celeryproject.org/&quot;&gt;Celery&lt;/a&gt; is an awesome distributed asynchronous task system for Python. It&amp;#39;s great out of the box, but a couple of times I have needed to customize it. Specifically, I want to be able to define behavior based on a new &lt;code&gt;apply_sync&lt;/code&gt; arguments. Also, it would be nice to be able to pass state to the worker tasks.&lt;/p&gt;
+
+&lt;p&gt;First, you can subclass the main &lt;code&gt;Celery&lt;/code&gt; class to define a custom &lt;code&gt;Task&lt;/code&gt; class.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;socket&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;celery&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Celery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;kombu.exceptions&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InconsistencyError&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyCelery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Celery&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot; Subclass of a Celery application class that uses a custom Task type &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;task_cls&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.mymodule:MyTask&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In your &lt;code&gt;Task&lt;/code&gt; class, you can override &lt;code&gt;apply_async&lt;/code&gt; (which is also called from &lt;code&gt;delay&lt;/code&gt;), as well as &lt;code&gt;__call__&lt;/code&gt;, which wraps around the actual task body.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyTask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;apply_async&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;producer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot; invoked either directly or via .delay() to fork a task from the main process &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+        &lt;span class=&quot;c&quot;&gt;# parse any custom task options from the .delay() or .apply_async() calls&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;safe&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;safe&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# safely trap errors talking to celery broker&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;headers&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;headers&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;headers&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&amp;#39;safe&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;safe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyTask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;apply_async&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;task_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;producer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InconsistencyError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;c&quot;&gt;# InconsistencyError == cannot find the celery queue&lt;/span&gt;
+            &lt;span class=&quot;c&quot;&gt;# socket.error == cannot talk to the queue server at all&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;safe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__call__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot; execute the task body on the remote worker &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;safe&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;safe&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NWTask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__call__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;ne&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;safe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;headers&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In this example, I&amp;#39;m introducing an optional &lt;code&gt;safe&lt;/code&gt; argument to &lt;code&gt;apply_async&lt;/code&gt;, which traps and ignores specific exceptions trying to fork the task. It also piggy backs on the celery task headers to pass itself to the worker process, where it ignores any exception thrown by the task itself.&lt;/p&gt;
+</content>
+        </entry>
+    
+        <entry>
+            <title>How to write effective unit tests</title>
+            <link href="/blog/2015/07/02/what-to-unit-test.html"/>
+            <updated>2015-07-02T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/07/02/what-to-unit-test</id>
+            <content type="html">&lt;p&gt;Unit tests differs from integration testing primarily in terms of what you&amp;#39;re testing for. Where as with integration tests, you testing for whether the entire system behaves as expected when put together, with unit tests, your goal is simply to enable refactoring with confidence. Ideally, when you refactor something and it&amp;#39;s broken, at least one unit test fails. But when you refactor something and it&amp;#39;s working, unit tests pass.&lt;/p&gt;
+
+&lt;p&gt;Integration tests are naturally  &lt;em&gt;high leverage&lt;/em&gt;; you can typically test a large swath of functionality with not much code. But they also are typically slower to run, test fewer edge cases and tend to not give you a very good idea of what is broken when they fail. To make sure your unit tests are complimentary, you want to make sure they are fast, test many edge cases, and test only one thing so you know what&amp;#39;s broken when they fail.&lt;/p&gt;
+
+&lt;h2&gt;What not to do&lt;/h2&gt;
+
+&lt;p&gt;It&amp;#39;s common to have a large set of unit tests written that don&amp;#39;t actually add much value. If you have many unit tests testing the same thing implicitly, then they will all fail at the same time. For example, you&amp;#39;re testing all your Flask views, and many of them have a decorator to test if the user is logged in. If you break that decorator, many tests will fail. Ideally, you want to test the decorator itself in one set of tests, and then have the rest of your tests mock that out.&lt;/p&gt;
+
+&lt;p&gt;In the later case, what happens when you go to refactor how login works? Hopefully, you only have to update a handful of tests. Going through the process of mocking things out and only testing one unit at a time will also improve the quality of the code itself. You will see how your components could be designed better for separation of concerns, so that they are testable separately.&lt;/p&gt;
+
+&lt;p&gt;Some common anti-patterns:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Unit tests for one unit of code allow that code to actually call into all it&amp;#39;s dependencies&lt;/li&gt;
+&lt;li&gt;Unit tests load a large database before they start&lt;/li&gt;
+&lt;li&gt;Unit tests are slow, so you hate adding more and running them&lt;/li&gt;
+&lt;li&gt;Assert on many things in one test, or assert on an entire nested JSON object, which is the same thing
+
+&lt;ul&gt;
+&lt;li&gt;Just think of what will happen if you ever change that JSON schema&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Forget to test branches in your code&amp;#39;s logic&lt;/li&gt;
+&lt;li&gt;Tests are verbose&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;What to do, instead&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mock other parts of the code base&lt;/li&gt;
+&lt;li&gt;Mock database access when you can
+
+&lt;ul&gt;
+&lt;li&gt;or, make sure database access in your tests is fast to setup and reset between tests&lt;/li&gt;
+&lt;li&gt;you can leverage database transactions for this&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Devise a mechanism to run just one test, or a small set of tests, on demand&lt;/li&gt;
+&lt;li&gt;Every logical branch in your code gets its own unit test&lt;/li&gt;
+&lt;li&gt;Tests employ same DRY principles as any other code&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Example: a Flask app&lt;/h2&gt;
+
+&lt;p&gt;Here is an example Flask app with a fictional ORM layer.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;flask&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Flask&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;flask.json&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jsonify&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Flask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@app.route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;/user/&amp;lt;int:user_id&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jsonify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;error&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;You are not logged in&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;objects&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NotFoundError&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jsonify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;error&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jsonify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What tests would you want to write for this code, and how would they keep isolated from the rest of your code?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Test that if you make do a &lt;code&gt;GET /user/1&lt;/code&gt; that your view is called with a &lt;code&gt;user_id&lt;/code&gt; of 1.
+
+&lt;ul&gt;
+&lt;li&gt;You &lt;em&gt;don&amp;#39;t&lt;/em&gt; need to test &lt;code&gt;@app.route&lt;/code&gt; per say, but you do need to test that the part you have customized (the URL) is working.&lt;/li&gt;
+&lt;li&gt;Test what happens when you call this route with a non-integer.&lt;/li&gt;
+&lt;li&gt;Just verify that &lt;code&gt;get_user&lt;/code&gt; is called with the right parameter, do NOT execute the body in this test. If you did, a breakage there would fail this test as well as subsequent tests.&lt;/li&gt;
+&lt;li&gt;For example, what if you misspelled &lt;code&gt;/user&lt;/code&gt;, or forgot to specify that &lt;code&gt;user_id&lt;/code&gt; was an &lt;code&gt;int&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Test what gets returned if &lt;code&gt;request.user&lt;/code&gt; is NOT defined. That&amp;#39;s a branch in your code.
+
+&lt;ul&gt;
+&lt;li&gt;If you turned that into a decorator, you would just want to verify that the decorator executed, but you could defer the testing of the logic to tests for that component. This is an example of improving your component design via testing.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Test what happens if the &lt;code&gt;user_id&lt;/code&gt; is not found.&lt;/li&gt;
+&lt;li&gt;Test the return value of a successful call.
+
+&lt;ul&gt;
+&lt;li&gt;Again, this could be made better by having a &lt;code&gt;User.to_json()&lt;/code&gt; method which is tested separately.&lt;/li&gt;
+&lt;li&gt;In that case, you would just assert that the return value is equal to &lt;code&gt;User.to_json()&lt;/code&gt;, not what the actual JSON is.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For some of these test cases, you will need to actually create a record in the database for that &lt;code&gt;user_id&lt;/code&gt; first. Your testing framework should give you a convenient place to do that. Again, the best way to do that is to write code to create just the record you need for this set of tests, versus running your tests against a full database backup. The later can be quite hard to maintain, and is generally slower.&lt;/p&gt;
+</content>
+        </entry>
+    
+        <entry>
+            <title>Python Mock Cookbook</title>
+            <link href="/blog/2015/06/25/python-mocking-cookbook.html"/>
+            <updated>2015-06-25T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/06/25/python-mocking-cookbook</id>
+            <content type="html">&lt;p&gt;The python &lt;a href=&quot;https://pypi.python.org/pypi/mock&quot;&gt;mock&lt;/a&gt; library is one of the awesome things about working in Python. No matter what code you&amp;#39;re unit testing, it&amp;#39;s possible to mock out various pieces with very little test code. That being said, it&amp;#39;s sometimes difficult to figure out the exact syntax for your situation. I attribute this to the nature of how you apply the mocks. Sometimes it feel like you&amp;#39;re shooting in the dark.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://docs.python.org/3/library/unittest.mock.html&quot;&gt;official documentation&lt;/a&gt; is comprehensive, but I find it somewhat hard to locate what you&amp;#39;re looking for. I recommend their &lt;a href=&quot;http://www.voidspace.org.uk/python/mock/examples.html&quot;&gt;examples doc&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This post is a write-up of my own personal usage.&lt;/p&gt;
+
+&lt;h1&gt;Big Upfront Caveat&lt;/h1&gt;
+
+&lt;p&gt;The biggest mistake people make is mocking something out in the wrong place. &lt;em&gt;You always need to mock the thing where it&amp;#39;s imported TO, not where it&amp;#39;s imported FROM.&lt;/em&gt; Translation: if you&amp;#39;re importing &lt;code&gt;from foo import bar&lt;/code&gt; into a package &lt;code&gt;bat.baz&lt;/code&gt;, you need to mock it as &lt;code&gt;@mock.patch(&amp;#39;bat.baz.bar&amp;#39;)&lt;/code&gt;. This can be confusing if you think you should be mocking it where it&amp;#39;s defined, not where it&amp;#39;s used.&lt;/p&gt;
+
+&lt;h1&gt;Setup&lt;/h1&gt;
+
+&lt;p&gt;For all these sections, assume we&amp;#39;re in a package called &lt;code&gt;myapp&lt;/code&gt;. The code you&amp;#39;re testing is in a module at &lt;code&gt;myapp.app&lt;/code&gt; and the definition of the objects that you&amp;#39;re mocking is imported there from &lt;code&gt;myapp.lib&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Want to see the full code? I have an repository on git with these examples called &lt;a href=&quot;https://github.com/chase-seibert/python-mocking&quot;&gt;python-mocking&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1&gt;Constants&lt;/h1&gt;
+
+&lt;p&gt;The easiest things to mock out are constants.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@mock.patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.MAX_ITEMS&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_constant&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Functions&lt;/h1&gt;
+
+&lt;p&gt;For functions, you will commonly need to specify a return value, check if they were called, and with what values.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@mock.patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.get_first_name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_get_first_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mock_get_first_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;return_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Bat&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mock_get_first_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assert_called&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mock_get_first_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assert_called_once_with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Methods&lt;/h1&gt;
+
+&lt;p&gt;Mocking a method on a class is just like mocking a function, you just reference it through the class name.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@mock.patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.Car.get_make&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_get_make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mock_get_make&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;return_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Ford&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mock_get_make&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assert_called&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Properties&lt;/h1&gt;
+
+&lt;p&gt;These are just special methods on a class with the &lt;code&gt;@property&lt;/code&gt; decorator. Now we&amp;#39;re starting to get tricky.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@mock.patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.Car.wheels&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_callable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PropertyMock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_property&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_wheels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mock_wheels&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;return_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Entire classes&lt;/h1&gt;
+
+&lt;p&gt;What if you want to swap out an entire class implementation? No problem! The key is that the &lt;code&gt;return_value&lt;/code&gt; should be a new instance of the class.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@mock.patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.Car&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NewCar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Audi&amp;#39;&lt;/span&gt;
+
+        &lt;span class=&quot;nd&quot;&gt;@property&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;wheels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;mock_car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;return_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NewCar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Class Methods&lt;/h1&gt;
+
+&lt;p&gt;What about a &lt;code&gt;@classmethod&lt;/code&gt; on a class? It&amp;#39;s the same as a method.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@mock.patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.Car.for_make&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_classmethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_for_make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;new_car&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;new_car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;make&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Chevy&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mock_for_make&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;return_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_car&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Static Methods&lt;/h1&gt;
+
+&lt;p&gt;Static methods are the same as class methods.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@mock.patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.Car.roll_call&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_classmethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_get_roll_call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mock_get_roll_call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;return_value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Ford&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Decorators &amp;amp; Context Managers&lt;/h1&gt;
+
+&lt;p&gt;Decorators are a tough one. They are defined at import time, and are thus diffucult to re-define as a mock. Your best bet is to create a function for the body of the decorator, and mock that.&lt;/p&gt;
+
+&lt;p&gt;Context managers are more do-able, but tricky.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@mock.patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.open_car&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_context_manager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_open_car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;enter_car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;mock_open_car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;return_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__enter__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enter_car&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Bonus - Mocking All Tests in a Suite&lt;/h1&gt;
+
+&lt;p&gt;San you have a certain mock that you want to apply to all tests in a TestCase class. You have two options. You can apply the patch in the &lt;code&gt;setUp&lt;/code&gt; and un-apply the patch in &lt;code&gt;tearDown&lt;/code&gt;, or you can over-ride &lt;code&gt;run&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.foo&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyTestCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Alternatively, you can mock out something in &lt;code&gt;setUp&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;patcher&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;myapp.app.foo&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mock_foo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;patcher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addCleanup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;patcher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NWApiTestCase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setUp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+        </entry>
+    
+        <entry>
+            <title>Flask absolute import bug in debug mode</title>
+            <link href="/blog/2015/06/12/flask-werkzeug-reloader-python-dash-m.html"/>
+            <updated>2015-06-12T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/06/12/flask-werkzeug-reloader-python-dash-m</id>
+            <content type="html">&lt;p&gt;Ran into a vexing issue this week. I was getting errors trying to use absolute imports in a new flask app:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Traceback &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+  File &lt;span class=&quot;s2&quot;&gt;&amp;quot;nw_api/example/run.py&amp;quot;&lt;/span&gt;, line 5, in &amp;lt;module&amp;gt;
+      from nw_api.docgen.base import DocumentationGenerator
+      ImportError: No module named nw_api.docgen.base
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I was able to use relative imports (i.e. &lt;code&gt;from docgen import base&lt;/code&gt;), but that&amp;#39;s generally considered bad practice. Plus, it was just weird. My unit tests were working with either method, which finally lead me to the offending line:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;flask_app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It turned out that setting &lt;code&gt;debug=False&lt;/code&gt; fixed the problem. Of course, debug mode is really useful, so I needed to figure out exactly what was going on. That turned up this &lt;a href=&quot;https://github.com/mitsuhiko/werkzeug/issues/461&quot;&gt;werkzeug bug&lt;/a&gt; titled &amp;quot;Reloader, python -m, and sys.path&amp;quot;.&lt;/p&gt;
+
+&lt;p&gt;Werkzueg, which provides a lot of Flask functionality (including the &lt;a href=&quot;http://werkzeug.pocoo.org/docs/0.10/debug/&quot;&gt;web based debugger&lt;/a&gt;), is doing something pretty tricky to implement hot-reloading of the source when you change a Python file. It spawns a subprocess to and loads the code again. However, it does not pass all of the arguments of the original python command line, notably missing the &lt;code&gt;-m&lt;/code&gt; argument, which is how you get python to run a module versus a single file:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;venv/bin/activate&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;src &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; python -m nw_api.example.run&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That was the run line from my original Makefile. Instead, I had to go with this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;venv/bin/activate&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;src &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:nw_api &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; python nw_api/example/run.py&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Success! What&amp;#39;s going on here is that to avoid using &lt;code&gt;-m&lt;/code&gt;, you need to update your &lt;code&gt;PYTHONPATH&lt;/code&gt; environment variable to include the (relative in this case) path to your module. Then you can run any single file in that module and it will pick up absolute imports for the rest.&lt;/p&gt;
+</content>
+        </entry>
+    
+        <entry>
+            <title>Using OmniFocus to manage your todo list and get shit done</title>
+            <link href="/blog/2015/05/01/omnifocus.html"/>
+            <updated>2015-05-01T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/05/01/omnifocus</id>
+            <content type="html">&lt;p&gt;Over the years, I&amp;#39;ve gone through many todo systems. From paper, to text files, to Evernote, to iOS Reminders (ugh), I&amp;#39;ve tried an array of solutions. Maybe you&amp;#39;re like me and are constantly looking for a better solution. For the last four months I&amp;#39;ve been using &lt;a href=&quot;https://www.omnigroup.com/omnifocus&quot;&gt;OmniFocus&lt;/a&gt;, and I think I&amp;#39;m in love.&lt;/p&gt;
+
+&lt;p&gt;Yep, it&amp;#39;s paid software. I feel like I put in my time with free tools on this one. Even though I usually try to stick to open source if possible, this is one purchase that&amp;#39;s worth every penny. Plus, you can likely expense it.&lt;/p&gt;
+
+&lt;h1&gt;What is OmniFocus?&lt;/h1&gt;
+
+&lt;p&gt;As part of my &lt;a href=&quot;http://gettingthingsdone.com/&quot;&gt;GTD&lt;/a&gt; workflow, I enter tasks to my todo list whenever I happen to think of them, often from my phone.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/omnifocus_add.png&quot; alt=&quot;omnifocus add&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Very often I will not categorize them in the moment. I&amp;#39;ll typically take a pass at my &amp;quot;Inbox&amp;quot; (the list of items not tied to a project) first thing in the morning at work. Most will be assigned to existing projects, but occasionally I will create a new project for a task.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/omnifocus_inbox.png&quot; alt=&quot;inbox&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, I can work through items during the day and start checking things off. I can easily focus on one project at a time and see just those items. Or I can favorite items and just look at those. There is even a context feature which allows you to see tasks that are related to where you are physically located or who you are talking to at the moment.&lt;/p&gt;
+
+&lt;h1&gt;Task list zero&lt;/h1&gt;
+
+&lt;p&gt;I recently converted to &lt;a href=&quot;http://whatis.techtarget.com/definition/inbox-zero&quot;&gt;Inbox Zero&lt;/a&gt;, where you archive or snooze items to get to a small set of emails that you need to take action on in the short term. So I starting thinking about whether I could apply this process to my todo list workflow, as well. It turns out that OmniFocus was was ahead of me.&lt;/p&gt;
+
+&lt;p&gt;Both tasks and entire projects can be deferred into the future. You can also set hard due dates.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/omnifocus_defer.png&quot; alt=&quot;omnifocus_defer&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;I use this feature to ensure that I&amp;#39;m making steady progress on a host of projects. Maybe on Mondays I start working on project A. I make some progress, checking off one or more tasks, and then I may defer that entire project a few days or a week into the future. It will pop back up then as a reminder to continue making progress, or defer it again.&lt;/p&gt;
+
+&lt;h1&gt;Repeating Tasks&lt;/h1&gt;
+
+&lt;p&gt;Similarly, there are things I want to do every single business day. I have a &amp;quot;Daily&amp;quot; project for these items, with a project level setting to repeatedly defer them by one day every time I check off a task.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/omnifocus_repeat.png&quot; alt=&quot;omnifocus_repeat&quot;&gt;&lt;/p&gt;
+
+&lt;h1&gt;Other Stuff&lt;/h1&gt;
+
+&lt;p&gt;OmniFocus has all kinds of other features, such as a weekly review mode, customizable views, notes (including links) on tasks and the ability to put projects on hold.&lt;/p&gt;
+
+&lt;p&gt;Check it out!&lt;/p&gt;
+</content>
+        </entry>
+    
+        <entry>
+            <title>REST API Design</title>
+            <link href="/blog/2015/04/24/rest-api-design.html"/>
+            <updated>2015-04-24T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/04/24/rest-api-design</id>
+            <content type="html">&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Representational_state_transfer&quot;&gt;REST&lt;/a&gt; APIs operate over HTTP, use standard verbs like &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;POST&lt;/code&gt;, expose a common-sense URL structure and return resources in a well-defined format, typically JSON.&lt;/p&gt;
+
+&lt;p&gt;In spite of that simple definition, there is a wide degree of latitude when designing a REST API to fuck it up. Don&amp;#39;t do that! Follow the guiding principle of making things as easy as possible for the calling developers. Provide the correct level of granularity, reduce the number of calls they need to make, and document the heck out of it.&lt;/p&gt;
+
+&lt;p&gt;In terms of granularity, I&amp;#39;m referring to whether the API exposes individual database records directly, with a thin CRUD layer, versus composing those into higher level resources that represent the problem domain the way your users think of it. The CRUD model makes a lot of sense for internal low-level data APIs, whereas the higher level model makese more sense for exposing to the outside world, as well as internal front-end and mobile developers. Remember - your relational data model details almost never aligns with the user&amp;#39;s mental model of how your application works.&lt;/p&gt;
+
+&lt;p&gt;For the rest of this article, I&amp;#39;m going to be talking primarily about higher level APIs, hereto referred to as an &lt;a href=&quot;http://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling&quot;&gt;Intent API&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Resource Semantics&lt;/h2&gt;
+
+&lt;p&gt;What&amp;#39;s the difference between an Intent API and a CRUD API? The level of granularity. Instead of exposing implementation details of your actual database scheme (which may change), we instead expose higher order concepts of what the user intention is for your actual use cases.&lt;/p&gt;
+
+&lt;p&gt;For example, in a CRUD API for a bank, you might expose &lt;a href=&quot;http://restful-api-design.readthedocs.org/en/latest/resources.html&quot;&gt;Resources&lt;/a&gt; for Accounts, Account Holders and Transactions. You would allow callers to create an Accout record, and you would allow the creation of Transactions. A caller might implement a transfer between two accounts as two transactions; one debit from account A and one deposit to account B. Hopefully you can also make those two operations an atomic transaction somehow.&lt;/p&gt;
+
+&lt;p&gt;With an Intent API, you would probably not allow Account or Account Holder creation at all. Those are likely off-line manual tasks that you want performed by actual humans, or at the very least your own internal services, which then use the private CRUD API. You also likely to not want to allow the creation of a Transaction directly. But maybe you expose a Transfer Resource, as well Purchase and ChargeBack Resources.&lt;/p&gt;
+
+&lt;p&gt;What does this get you? By mapping to the intention of the user - what they are actually trying to accomplish - you have the opportunity to tailor an API endpoint to just the set of parameters that make sense for that operation. For a Transfer, you need two Account IDs. For Purchase, you need Vendor metadata. For a ChargeBack, you need a previous Transaction ID.&lt;/p&gt;
+
+&lt;p&gt;You also have the ability to ensure that operations are atomic and leave the data in a valid state. If a Transfer fails the second part of a two-stage commit, you can roll the first part back. You do not have to rely on the caller to do that properly.&lt;/p&gt;
+
+&lt;p&gt;What you have done is remove the burden of implementing business logic that&amp;#39;s specific to your system from the callers, and placed it inside your system (where it belongs).&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s true that this is not strictly RESTful; you&amp;#39;re exposing verbs as your Resources. You are likely going to expose nouns as well (Account, Transaction, Vendor), but your any call that&amp;#39;s not &lt;a href=&quot;http://en.wikipedia.org/wiki/Idempotence&quot;&gt;idempotent&lt;/a&gt; should probably be a verb.&lt;/p&gt;
+
+&lt;p&gt;For an example of this in action, see the &lt;a href=&quot;https://developer.github.com/v3/repos/merging/&quot;&gt;GitHub API&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;POST /repos/:owner/:repo/merges
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;s2&quot;&gt;&amp;quot;base&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;master&amp;quot;&lt;/span&gt;,
+  &lt;span class=&quot;s2&quot;&gt;&amp;quot;head&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;cool_feature&amp;quot;&lt;/span&gt;,
+  &lt;span class=&quot;s2&quot;&gt;&amp;quot;commit_message&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;Shipped cool_feature!&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Notice that semantically speaking you&amp;#39;re not creating a Commit Resource that actually represents the merging of two branches in git. Most users of git don&amp;#39;t even understand what is actually happening to the data model for a merge; don&amp;#39;t make your API callers have to understand it, either.&lt;/p&gt;
+
+&lt;p&gt;How do you know which intents to model for? I would start by looking at your core user scenarios, and think about what Resources you would want to have for each one, keeping in mind that you want to minimize the number of API calls required to display the user interface. You have to balance that against the cohesion and separation of concerns  of each Resource.&lt;/p&gt;
+
+&lt;h2&gt;URL Structure&lt;/h2&gt;
+
+&lt;p&gt;On to implementation details! What should your URL structure look like? In general, you want to pick either plural or singular nouns and verbs and stick with that. I&amp;#39;m going to be opinionated and say that you should use plural nouns and singular verbs. For example:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/accounts&lt;/code&gt; - list all Accounts&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/accounts/123&lt;/code&gt; - get the Account with ID 123&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/accounts/123/transactions&lt;/code&gt; - list Transactions associated with this Account&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/accounts/123/transactions/123&lt;/code&gt; - get a particular Transaction inside an Account&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/transactions/123&lt;/code&gt; - get the same Transaction outside the context of an Account&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/transfer&lt;/code&gt; - Create a transfer between two accounts (POST)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; there is no problem with exposing the same Resource at multiple end points. This is not a DRY model; remember that our guiding principle is making things easy for the developers. Maybe they don&amp;#39;t know what Account is associated with a given Transaction.&lt;/p&gt;
+
+&lt;p&gt;Finally, you want to think about what content to display at the root endpoint of &lt;code&gt;/&lt;/code&gt;. I have seen some APIs that use that endpoint as an opportunity to include likes to developer documentation and/or a list of all the endpoints in the system.&lt;/p&gt;
+
+&lt;h2&gt;Requests&lt;/h2&gt;
+
+&lt;p&gt;The biggest decision here is how to take data from the caller. Most REST APIs will support URL parameters for most use cases. If you&amp;#39;re doing that, make sure to support form POST encoding as well, it should be no extra work. These work well for simple key/value parameters, and are easy to implement for the caller.&lt;/p&gt;
+
+&lt;p&gt;For nested data, you have a choice of supporting JSON request bodies or using some type of prefix scheme in your key/value pairs. For example, you could represent the following JSON body:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;user&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;Chase Seibert&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;account&amp;quot;&lt;/span&gt;: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;: 1,
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&amp;quot;foobar&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As the key/value pairs &lt;code&gt;?user=Chase Seibert&amp;amp;account__id=1&amp;amp;account__name=foobar&lt;/code&gt;. Personally, I think that&amp;#39;s both ugly and hard for the caller to implement in some cases.&lt;/p&gt;
+
+&lt;p&gt;Whatever you choose, make sure to inspect and respect the callers content-type.&lt;/p&gt;
+
+&lt;h2&gt;Metadata &amp;amp; Responses&lt;/h2&gt;
+
+&lt;p&gt;For each API response, you want to have a consistent set of metadata that the callers can rely on being there, as well as a consistent overall packet structure. For example, you likely want to have well defined fields for pagination, results and error messages. But you may also want to include less obvious items, like an echo of the parameters that the user passed to you. This can be useful as signal that you have unambiguously received the arguments, parsed them out correctly and that they are valid for this API call.&lt;/p&gt;
+
+&lt;p&gt;Pagination is typically done by supporting something like &lt;code&gt;limit&lt;/code&gt;, &lt;code&gt;offset&lt;/code&gt; and &lt;code&gt;sortBy&lt;/code&gt; as URL parameters. Then you include &lt;code&gt;nextPage&lt;/code&gt; and &lt;code&gt;previousPage&lt;/code&gt; fields in your response &lt;em&gt;which are absolute URLs&lt;/em&gt; to those results in the API. &lt;em&gt;Note:&lt;/em&gt; I&amp;#39;m using &lt;code&gt;camelCase&lt;/code&gt; here versus &lt;code&gt;snake_case&lt;/code&gt;. Given that most API consumers these days are either Javascript apps or native mobile apps (objective-c or Java), it might make sense to use their conventions and go with camel case. Just be consistent.&lt;/p&gt;
+
+&lt;p&gt;Error messages are great for developer sanity. Of course you want the primary signal of an error to be the proper HTTP status code for that error class.&lt;/p&gt;
+
+&lt;h2&gt;Versioning&lt;/h2&gt;
+
+&lt;p&gt;You probably want to think about an API versioning strategy up front. In its simplest form, this is just a prefix like &lt;code&gt;/v1&lt;/code&gt; that you prepend to every API endpoint. The idea is to plan ahead for having multiple supported versions in flight at the same time, to give developers a gentle transition for breaking changes to the API.&lt;/p&gt;
+
+&lt;p&gt;But how do you architect your code to be able to serve multiple versions? The heavy handed approach is to fork the code for each supported version. This is fairly simple, and has the advantage of being very predictably stable for older versions. A different approach might be to have the same codebase serve multiple versions. In that case, you will likely want to retain multiple versions of a subset of the unit tests, in addition.&lt;/p&gt;
+
+&lt;p&gt;A third hybrid approach would be to fork either with source control branches, or with actual running VMs or containers with that code on it. This has the disadvantage of making the older versions difficult to patch, either for hotfixes or infrastructure changes.&lt;/p&gt;
+
+&lt;p&gt;The most important thing is to have a plan up front. I would recommend launching with both a &lt;code&gt;/v1&lt;/code&gt; and a &lt;code&gt;/v0&lt;/code&gt; API that have some backwards incompatible difference, even if it&amp;#39;s just a dummy endpoint that is removed in version 1.&lt;/p&gt;
+
+&lt;h2&gt;Authentication&lt;/h2&gt;
+
+&lt;p&gt;If you&amp;#39;re producing a public facing API, you almost certainly want to use OAuth. Don&amp;#39;t write your own, find a framework. Even if your API is restricted to internal use, you should think about including at least some kind of caller identifier mechanism. This can come in handy when you go to produce analytics on who is using the API, in addition to being a prerequisite for rate limiting per caller.&lt;/p&gt;
+
+&lt;p&gt;Whichever auth mechanism you choose, you will want 100% of the API calls to be over HTTPS, so as not to leak those credentials. Don&amp;#39;t even support a HTTP option.&lt;/p&gt;
+
+&lt;h2&gt;Documentation &amp;amp; Developers&lt;/h2&gt;
+
+&lt;p&gt;Almost as important as the semantics of the API is having excellent, comprehensive documentation. Don&amp;#39;t rely on automatically generated documentation here. Or, at least add a lof of explanatory detail about why the developer might want to use the API, and what each piece of the request and response mean. It&amp;#39;s especially tricky to put yourself in the place of a person who doesn&amp;#39;t know the intimate details of the models in your sytem. Run it by a third party for a sanity check.&lt;/p&gt;
+
+&lt;p&gt;Along with the text documentation, you will want to supply full, untruncated examples for common requests and responses. Go ahead and make sure they are pretty printed and perhaps even syntax highlighted. I would also recommend that you pretty print the actual API responses from the server.&lt;/p&gt;
+
+&lt;p&gt;A great way to expose examples is with interactive consoles. If you provide HTML documentation, you have even make the examples executable and tweakable in-line. The &lt;a href=&quot;http://www.django-rest-framework.org/&quot;&gt;Django REST Framework&lt;/a&gt; is a great example of this.&lt;/p&gt;
+
+&lt;h2&gt;Python Tooling&lt;/h2&gt;
+
+&lt;p&gt;Here are some common frameworks for writing REST APIs in Python:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.django-rest-framework.org/&quot;&gt;Django REST Framework&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://flask-restful.readthedocs.org/en/0.3.2/&quot;&gt;Flask RESTful&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://flask.pocoo.org/docs/0.10/api/&quot;&gt;Flask API&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A good utility for working with REST APIs is &lt;a href=&quot;https://github.com/dsc/bunch&quot;&gt;Bunch&lt;/a&gt;, which lets you easily translate between JSON API responses and Python objects. You can also go the other way, which may be useful for mapping your database objects to JSON.&lt;/p&gt;
+
+&lt;p&gt;For versioning, check out &lt;a href=&quot;http://flask.pocoo.org/docs/0.10/blueprints/#registering-blueprints&quot;&gt;Flask blueprints&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, depending on whether your API is internal or external, you can look into tools for creating API consoles:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://apigee.com/about/&quot;&gt;Apigee&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.hurl.it/&quot;&gt;HurLit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://raml.org/projects.html&quot;&gt;RAML API Console&lt;/a&gt; - &lt;a href=&quot;https://anypoint.mulesoft.com/apiplatform/popular/#/portals/apis/6308/versions/6302/pages/31760&quot;&gt;example&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        </entry>
+    
+        <entry>
+            <title>Reading List (my common references)</title>
+            <link href="/blog/2015/04/13/reading-list.html"/>
+            <updated>2015-04-13T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/04/13/reading-list</id>
+            <content type="html">&lt;p&gt;This post is list of articles, blogs and other resources that I commonly reference.&lt;/p&gt;
+
+&lt;h1&gt;Books&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/B002UXRGNO&quot;&gt;Rocket Surgery Made Easy&lt;/a&gt; - Usability testing&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/0471730335&quot;&gt;The Bogleheads&amp;#39; Guide to Investing&lt;/a&gt; - Saving for retirement&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/B00GUPYRUS&quot;&gt;Leadership and Self-Deception&lt;/a&gt; - Management&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/1430243147&quot;&gt;Managing Humans&lt;/a&gt; - Management&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/0142000280&quot;&gt;Getting Things Done&lt;/a&gt; - Organization&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670&quot;&gt;Code Complete&lt;/a&gt; - Coding&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959&quot;&gt;The Mythical Man-Month&lt;/a&gt; - Project management&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/0130676349&quot;&gt;Agile Software Development with Scrum&lt;/a&gt; - Agile&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1&gt;Articles&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.celebrazio.net/jimb/15.html&quot;&gt;Three Snakes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://12factor.net/&quot;&gt;The Twelve Factor App&lt;/a&gt; - Tenets for building microservices&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://signalvnoise.com/posts/3124-give-it-five-minutes&quot;&gt;Give it Five Minutes&lt;/a&gt; - Knee jerk idea dismissal&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sockpuppet.org/blog/2015/03/06/the-hiring-post/&quot;&gt;The Hiring Post&lt;/a&gt; - Software engineer interviews suck&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://lucumr.pocoo.org/2011/7/19/sqlachemy-and-you/&quot;&gt;SQLAlchemy for Django Devs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        </entry>
+    
+        <entry>
+            <title>Book Review - Leadership and Self Deception</title>
+            <link href="/blog/2015/04/13/leadership-and-self-deception.html"/>
+            <updated>2015-04-13T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/04/13/leadership-and-self-deception</id>
+            <content type="html">&lt;p&gt;This is a review of &lt;a href=&quot;http://www.amazon.com/Leadership-Self-Deception-Getting-Out-Box-ebook/dp/B00GUPYRUS&quot;&gt;Leadership and Self-Deception: Getting Out of the Box&lt;/a&gt; by The Arbinger Institute.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/leadership-and-self-deception.jpg&quot; alt=&quot;cover&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;Summary&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You&amp;#39;re &amp;quot;in the box&amp;quot; when you&amp;#39;re viewing others around you as mere objects and not as people.&lt;/li&gt;
+&lt;li&gt;Other people respond primarily to how to see them, not how to act towards them.&lt;/li&gt;
+&lt;li&gt;Everyone is in the box towards some people, and outside of the box towards others, all the time.&lt;/li&gt;
+&lt;li&gt;You get in the box by not acting the way you know you should.&lt;/li&gt;
+&lt;li&gt;When you&amp;#39;re inside the box, you &lt;em&gt;need&lt;/em&gt; to feel justified, and can&amp;#39;t focus on results. This is known as self deception.&lt;/li&gt;
+&lt;li&gt;This distorts how you see other people.&lt;/li&gt;
+&lt;li&gt;Over time, your boxes can become baggage that you bring to new relationships.&lt;/li&gt;
+&lt;li&gt;When you&amp;#39;re in the box, you invite others to be in the box towards you.&lt;/li&gt;
+&lt;li&gt;Only seeing people as people AND stopping resisting them will get you out of the box.&lt;/li&gt;
+&lt;li&gt;Things that DON&amp;#39;T get you out of the box: try to change them, cope with them, leave, change your behavior or even communicate better.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Commentary&lt;/h2&gt;
+
+&lt;p&gt;The book is written in the form of a narrative of a fictional new employee at a fictional company, going through a training session on leadership. This is a somewhat surprising format for essentially a self-help/business/management book. But it works for me, I find it to make the subject matter easier to retain. It&amp;#39;s also an easy read.&lt;/p&gt;
+
+&lt;p&gt;The concept of being &amp;quot;in the box&amp;quot;, is simultaneously intuitive in the broad strokes and counter-intuitive in the details. The key insight from my perspective is that you get in the box by betraying your own sense of how you should act in a given situation. I have found myself reflecting on this a lot since I read the book. It&amp;#39;s also caused me to rethink some of my previous working relationships.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;ve also been trying to think of when I have been victim to self deception in the past. By the very nature of the problem, it&amp;#39;s hard to know whether or to what extent you&amp;#39;re effected. Perhaps it&amp;#39;s best to focus on how to flag self deception in the future. Many corporate cultures have a mechanism for attempting to get this kind of feedback. Even so, I can&amp;#39;t help but think that it&amp;#39;s often not very effective. I will make a point in the future to explicitly ask people I work with how I am currently deceiving myself.&lt;/p&gt;
+</content>
+        </entry>
+    
+        <entry>
+            <title>Docker/OSX Quickstart (not grokking docker yet? start here)</title>
+            <link href="/blog/2015/04/11/docker-osx-quickstart.html"/>
+            <updated>2015-04-11T00:00:00-07:00</updated>
+            <id>http://chase-seibert.github.com/blog//2015/04/11/docker-osx-quickstart</id>
+            <content type="html">&lt;p&gt;Docker has only been around since 2013, but it seems like it&amp;#39;s all over my Twitter feed and RSS reader. I&amp;#39;ve gone trough the &amp;quot;Hello world&amp;quot; example in the past, but never felt like I really understood either the value proposition, or exactly how it works. This week, I had some time to sit down and give it more of my attention. What I found was that it was neither as mysterious or as complicated as I anticipated.&lt;/p&gt;
+
+&lt;h2&gt;Installing on a Mac&lt;/h2&gt;
+
+&lt;p&gt;Docker was born on Linux and uses Linux internals like &lt;a href=&quot;https://linuxcontainers.org/&quot;&gt;LXC&lt;/a&gt; to work its magic. There is a Windows native version in the works (not that anyone cares). But given that software engineering in the Bay Area is dominated by Macs, let&amp;#39;s start by looking at how to get this installed and running on OSX.&lt;/p&gt;
+
+&lt;p&gt;First off, don&amp;#39;t try to install it via &lt;code&gt;brew&lt;/code&gt;, or any other package manager. Docker is written in Go, which has the advantage of compiling down to dependency-less binaries. Plus, the project is moving so fast that the versions in package managers are out of date. So, suck it up and install it manually by &lt;a href=&quot;https://github.com/boot2docker/osx-installer/releases/tag/v1.5.0&quot;&gt;downloading the binary&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you can open a terminal and run &lt;code&gt;docker --version&lt;/code&gt;, you&amp;#39;re good to go. This tutorial is for version 1.5.0.&lt;/p&gt;
+
+&lt;h2&gt;Boot2Docker&lt;/h2&gt;
+
+&lt;p&gt;If you try to run a docker image now, you will get an cryptic error like &lt;code&gt;docker max dial unix /var/run/docker.sock: no such file or directory&lt;/code&gt;. This is because the Docker daemon process is not running. Actually, it cannot run on a Mac! Instead, you &lt;em&gt;must&lt;/em&gt; use &lt;a href=&quot;http://boot2docker.io/&quot;&gt;boot2docker&lt;/a&gt;, which is a tiny virtual machine that runs in VirtualBox and has the Docker daemon. Again, use the binary installer (sorry!).&lt;/p&gt;
+
+&lt;p&gt;To get up and running, open a terminal the run the following.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;boot2docker init
+boot2docker up
+&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;$(boot2docker shellinit)&amp;quot;&lt;/span&gt;
+docker run ubuntu:14.04 /bin/echo &lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello world&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That&amp;#39;s your hello world example. Let&amp;#39;s breakdown what&amp;#39;s happening here. &lt;code&gt;boot2docker init&lt;/code&gt; creates a new virtual machine in VirtualBox.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/boot2docker.png&quot; alt=&quot;boot2docker&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;The next step, &lt;code&gt;boot2docker up&lt;/code&gt; runs the virtual machine. The &lt;code&gt;eval &amp;quot;$(boot2docker shellinit)&amp;quot;&lt;/code&gt; step is setting some environment variables that tell Docker what container context you are currently in. If you run just &lt;code&gt;boot2docker shellinit&lt;/code&gt; by itself, you can see the raw output:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Writing /Users/chase/.boot2docker/certs/boot2docker-vm/ca.pem
+Writing /Users/chase/.boot2docker/certs/boot2docker-vm/cert.pem
+Writing /Users/chase/.boot2docker/certs/boot2docker-vm/key.pem
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;DOCKER_HOST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;tcp://192.168.59.104:2376
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;DOCKER_CERT_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/Users/chase/.boot2docker/certs/boot2docker-vm
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;DOCKER_TLS_VERIFY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The first three lines are just informational, only the last three lines are printed to stdout.&lt;/p&gt;
+
+&lt;p&gt;The last line, &lt;code&gt;docker run ubuntu:14.04 /bin/echo &amp;#39;Hello world&amp;#39;&lt;/code&gt; actually instantiates a new Docker container (using Ubuntu 14.04), and runs a single command inside it.&lt;/p&gt;
+
+&lt;h3&gt;A Note about Containers&lt;/h3&gt;
+
+&lt;p&gt;Containers are little sandboxed Linux instances. Images are the serialized file definition that containers are spun up from. The magic of Docker is that the images are completely portable. This concept escaped me at first. I was under the impression that you needed to build an image on your Mac to run it there, and then build a separate image on Amazon EC2 to run the same thing there.&lt;/p&gt;
+
+&lt;p&gt;In fact, you can build an image on your Mac, and then essentially &lt;code&gt;scp&lt;/code&gt; that file up to AWS and run it. In reality, you don&amp;#39;t even need to copy it manually, that&amp;#39;s what Docker Hub is for.&lt;/p&gt;
+
+&lt;p&gt;Also, the Linux distribution used inside your Docker container does NOT have to match the distribution of the host operating system. You can run Ubuntu inside a CentOS host, and visa-versa.&lt;/p&gt;
+
+&lt;p&gt;Finally, images have a built-in &lt;a href=&quot;https://docs.docker.com/terms/layer/&quot;&gt;layering mechanism&lt;/a&gt;. Essentially, you can have a base image and then any number of small layers of diffs on top of that. This is a powerful optimization and abstraction, which we will talk about later.&lt;/p&gt;
+
+&lt;h2&gt;Example Python Flask App&lt;/h2&gt;
+
+&lt;p&gt;This is the canonical tutorial for Python folks getting started with Docker, and yet I could not complete is successfully with any of the documentation I found. Here is my own special snowflake version.&lt;/p&gt;
+
+&lt;p&gt;First, create a new directory called &lt;code&gt;flask&lt;/code&gt;. Inside, you are going to create three files.&lt;/p&gt;
+
+&lt;p&gt;The first file is called &lt;code&gt;app.py&lt;/code&gt;, which is just a simple hello world Flask app.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;flask&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Flask&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Flask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@app.route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Hello World!&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, create a &lt;code&gt;requirements.txt&lt;/code&gt; file to list Flask as a dependency:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;Flask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;0.10.1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, create your &lt;code&gt;Dockerfile&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;FROM python:2.7
+ADD . /code
+WORKDIR /code
+RUN pip install -r requirements.txt
+EXPOSE 5000
+CMD python app.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let&amp;#39;s take a moment and breakdown this last file. The &lt;code&gt;FROM&lt;/code&gt; line tells Docker to base this container off of a named image in the public repository called &lt;code&gt;python&lt;/code&gt;, and to use the named tag of that image (kind of like a version) of &lt;code&gt;2.7&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;ADD&lt;/code&gt; line copies your code from the current directory &lt;code&gt;.&lt;/code&gt; to &lt;code&gt;/code&lt;/code&gt; inside the Docker container Linux instance. &lt;code&gt;WORKDIR&lt;/code&gt; settings the working directory there as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;RUN&lt;/code&gt; can be specified multiple times. It tells Docker to run these commands when building the container for the first time. Run steps are actually cached; changing one of them later will only result in that one being run again. This is possible due to the container layering we talked about earlier.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;EXPOSE&lt;/code&gt; tells Docker that the container will be serving port 5000 externally. This is the port we will run the flask app on.&lt;/p&gt;
+
+&lt;p&gt;Finally, the &lt;code&gt;CMD&lt;/code&gt; line specifies the command that will run inside the container as your main daemon process. If you need multiple daemons, look into &lt;a href=&quot;https://docs.docker.com/compose/&quot;&gt;docker-compose&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Run it&lt;/h3&gt;
+
+&lt;p&gt;To run the example, execute the following commands:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;open &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://$(boot2docker ip):5000&amp;quot;&lt;/span&gt;
+docker build -t flask-example .
+docker run -it -p 5000:5000 -v &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;:/code:ro flask-example
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This should have opened a browser tab before spawning flask. That likely came up with a &amp;quot;This webpage is not available&amp;quot; error page, but if you refresh it now, you should see your &amp;quot;Hello World!&amp;quot; text.&lt;/p&gt;
+
+&lt;p&gt;What you have done is create a named image called &lt;code&gt;flask-example&lt;/code&gt; and run it. You can even edit the code on your local file system and it will sync over to Docker (thanks to &lt;code&gt;-v&lt;/code&gt;) and flask will restart.&lt;/p&gt;
+
+&lt;h2&gt;Running the same container on AWS&lt;/h2&gt;
+
+&lt;p&gt;Now, let&amp;#39;s look at how to run that same container on AWS. First, go sign up for &lt;a href=&quot;https://hub.docker.com/&quot;&gt;Docker Hub&lt;/a&gt;. It&amp;#39;s free.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s assume your Docker Hub username is &lt;code&gt;foobar&lt;/code&gt;. First, re-build and publish your image:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker build -t foobar/flask-example .
+docker login
+docker push foobar/flask-example
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, create a new EC2 instance. Make sure to use the &amp;quot;Amazon Linux&amp;quot; base image, which will make installing Docker easier. SSH into your instance and run the docker container:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo yum install -y docker&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; sudo service docker start
+sudo docker run -it -p 8000:5000 foobar/flask-example
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The first line simply installs Docker and starts it. The second line pulls down your image from Docker Hub (note: no need to authenticate!), runs it in an interactive shell, and maps the external port 8000 on the host EC2 instance to port 5000 inside the container.&lt;/p&gt;
+
+&lt;p&gt;If you have your security group setup to expose port &lt;code&gt;8000&lt;/code&gt;, you should be able to open this EC2 public host name on port 8000 in a web browser.&lt;/p&gt;
+
+&lt;h1&gt;More Stuff&lt;/h1&gt;
+
+&lt;p&gt;When I was getting started with this, I made the mistake of reading about and trying to leverage &lt;code&gt;docker-compose&lt;/code&gt; and &lt;code&gt;docker-machine&lt;/code&gt; right away. These are official plugins, which ease the configuration of multi-service and multi-machine capabilities in Docker, respectively. I suggest NOT starting in with those until you have the above basics buttoned down. I found that they clouded my understanding of what was happening at first.&lt;/p&gt;
+</content>
+        </entry>
+    
+
+</feed>
