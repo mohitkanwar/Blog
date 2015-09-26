@@ -1,0 +1,518 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JBake</title>
+    <link>http://jbake.org</link>
+    <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
+    <description>JBake Bootstrap Template</description>
+    <language>en-gb</language>
+    <pubDate>Sat, 26 Sep 2015 07:11:12 +0530</pubDate>
+    <lastBuildDate>Sat, 26 Sep 2015 07:11:12 +0530</lastBuildDate>
+
+    <item>
+      <title>Object Oriented Programming</title>
+      <link>http://jbake.org/blog/2015/oops.html</link>
+      <pubDate>Wed, 16 Sep 2015 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2015/oops.html</guid>
+      	<description>
+	
+Any real world object, has some properties (which may or may not change over time) and some behavior (which may or may not vary depending upon other conditions).
+e.g. A pencil is a real world object; which has the following properties:
+&lt;ul&gt;
+    &lt;li&gt; It is red in colour (will not change with time)&lt;/li&gt;
+     &lt;li&gt;It is 10 cm in length as of now (may change when sharpen)&lt;/li&gt;
+&lt;/ul&gt; 
+
+And it has the following behaviors:
+&lt;ul&gt;
+    &lt;li&gt;It leaves mark when used properly. &lt;/li&gt;
+    &lt;li&gt;The mark may vary depending upon the pressure applied. (Depends upon external factor)&lt;/li&gt;
+    &lt;li&gt;Its length gets reduced when sharpened (constant behavior)&lt;/li&gt;
+&lt;/ul&gt;
+Just like this example, the real world objects have many more features, but in programming we cater only the required features.
+
+&lt;p&gt;
+Programming in OOPS, has its own advantages. e.g. It is easier for the programmers to relate an Object to the real world and program what is expected. It is really helpful as and when the application grows bigger and there are multiple objects interacting with each other. It helps in distributing responsibilities within the objective world enabling focused thinking.
+&lt;/p&gt;
+&lt;p&gt;
+Another important feature associated with OOP (Object Oriented Programming) is classification of objects. Since world (real/virtual) is full of objects, it is difficult to manage them as individual objects. We need a way to classify these objects helping us relate different objects and their features. e.g. a black coloured pencil. It is all the same as the one used in previous example, but is a different object. But since they both are pencils, they belong to same class &quot;Pencil&quot;. Whereas a pen, which is very similar to a pencil, belongs to a different Class. Although, both Pen and Pencil are &quot;Writing Instruments&quot;.&lt;/p&gt;
+&lt;p&gt;Object Oriented Programming has following principles:&lt;/p&gt;
+ &lt;div class=&quot;row&quot;&gt;
+          &lt;div class=&quot;col-lg-12&quot;&gt;
+               &lt;h4&gt;Abstraction&lt;/h4&gt;
+                                &lt;p&gt;Abstraction is defined as &lt;i&gt;the quality of dealing with ideas rather than events&lt;/i&gt; or in other words &lt;i&gt;freedom from representational qualities&lt;/i&gt;. It enables programmers to focus on &lt;i&gt;what&lt;/i&gt; to program rather than &lt;i&gt;how&lt;/i&gt;. Abstraction can be looked as a contract, for exposing the functionality that we are providing. Implementation details can be hidden using this concept.                                
+                                &lt;/p&gt;
+                                &lt;p&gt;
+                                For example, if we need a class that writes we can be sure that it must have a method &quot;write&quot;&lt;/p&gt;
+                                &lt;pre&gt;&lt;code&gt;
+                                abstract class writer{
+                                write();
+                                }
+                                &lt;/code&gt;&lt;/pre&gt;
+                                
+                                &lt;p&gt;So, what we have done here is, designed a high level class which is abstract i.e. it knows &quot;what&quot; functionality do we need to have, but &quot;how&quot; to perform that functionality is out of scope for this class.
+                              
+                                &lt;/p&gt;
+                                &lt;p&gt;  
+                                        This has many advantages
+                                &lt;/p&gt;
+                                &lt;ul&gt;
+                                        &lt;li&gt;We expose the minimum information required to external entities, this enables focused thinking, avoids confusion and prevents unintended promises&lt;/li&gt;
+                                        &lt;li&gt;We leave a room for improvement in future, which is not possible if implementation details are exposed.&lt;/li&gt;
+                                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-lg-12&quot;&gt;
+                   &lt;h4&gt;Inheritence&lt;/h4&gt;
+                                &lt;p&gt;Inheritance in general English means, acquire and pass on . It is existing in our culture since long. Fathers and fore-fathers acquire lands with their hard work and then pass on to their kids, even nature favors Inheritance. All body features like height, skin/eye/hair colour etc are governed by genes inherited by us from our parents. This prevents re-inventing the wheel and attain fast progress.
+Same is the case in OOP. We create a parent class with few basic properties/behavior. All the child classes of this parent  would contain the same properties/behavior as that of parent. Although, the child can acquire more properties/behavior or change the implementation of the behavior all together. &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+class WritingInstrument{
+   colour
+   write(){
+   }
+} 
+ class pen (child of parent){ 
+  inkcolour
+ } 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+In the example  above, the parent class (WritingInstrument) has a property colour and a behavior write. When the child class (pen) is defined, defining colour and write again is not required. They are present in pen class by the help of inheritance. However, the child class can define additional properties/behaviour of its own.&lt;/p&gt;
+&lt;p&gt;So how can we use this in practice? We developers are super lazy. We don&apos;t want to type in something again and again. Keeping multiple copies of same code is also not preferred as&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;It Helps code management, less copies means less code&lt;/li&gt;
+    &lt;li&gt;One place change visible everywhere&lt;/li&gt;
+    &lt;li&gt;Less errors due to less code&lt;/li&gt;
+    &lt;li&gt;Generalization is achieved as one code is serving multiple requirements&lt;/li&gt;
+    &lt;li&gt;Focused coding&lt;/li&gt;
+    &lt;li&gt;Focused testing&lt;/li&gt;
+&lt;/ul&gt;
+ Inheritance in Java is achieved through extends or implements keyword.
+ &lt;pre&gt;
+&lt;code&gt;
+class WritingInstrument{
+}
+
+class Pen extends WritingInstrument{
+}
+&lt;/code&gt;&lt;/pre&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-lg-12&quot;&gt;
+                
+                                &lt;h4&gt;Polymorphism&lt;/h4&gt;
+                                &lt;p&gt;The word polymorphism is derived from two words&lt;/p&gt;
+                                &lt;ul&gt;
+                                &lt;li&gt;&lt;b&gt;Poly&lt;/b&gt; : multiple/ more than one&lt;/li&gt;
+                                &lt;li&gt;&lt;b&gt;morph&lt;/b&gt; : Form/ shape &lt;/li&gt;
+                                &lt;/ul&gt;
+                                Literally, the word polymorphism refers to the ability of an object that behave differently in different conditions.
+                        &lt;p&gt; In programming, polymorphism can be achieved at multiple places&lt;/p&gt;
+                        &lt;ul&gt;
+                                &lt;li&gt;Classes&lt;/li&gt;
+                                &lt;li&gt;Methods&lt;/li&gt;
+                                &lt;li&gt;Operators&lt;/li&gt;
+                                
+                                All of the above can behave differently under different conditions, may be the context in which they are being used.
+                                It is helpful, as the client do not need to know multiple aspects, and the desired functionality is achieved by picking the required information from the context.
+                        &lt;/ul&gt;
+                        
+                        &lt;pre&gt;&lt;code&gt;
+                        class writingObjects{
+                        write(){
+                        // write using default colours
+                        }
+                        }&lt;/code&gt;
+                        &lt;/pre&gt;
+                        &lt;pre&gt;&lt;code&gt;
+                        class pencil extends writingObjects{
+                        write(){
+                        //write with grey colour, the text written is erasable
+                        }
+                        &lt;/code&gt;
+                        &lt;/pre&gt;
+                        &lt;pre&gt;&lt;code&gt;
+                         class pen extends writingObjects{
+                        write(){
+                        //write with blue colour, the text written is not erasable
+                        }
+                        }
+                        &lt;/code&gt;
+                        &lt;/pre&gt;
+                        &lt;pre&gt;&lt;code&gt;
+                        class Main{
+                        
+                        main(){
+                        writingObjects wr= Object of writingObjects()
+                        
+                        wr.write(); // 1st call
+                        
+                        writingObjects wr= Object of Pen()
+                         
+                         wr.write() // 2nd call
+                         
+                         writingObjects wr2= Object of Pencil()
+                         
+                         wr2.write() // 3rd call
+                         
+                        }
+                        }
+                        &lt;/code&gt;&lt;/pre&gt;
+                        &lt;p&gt;
+                        In the example above, we have a default implementation in writingObjects, which is extended/overridden by child classes Pen and Pencil. The write method is invoked 3 times in Main class. Each time a different implementation is invoked depending upon which object is in the context. Here, the method &lt;i&gt;write&lt;/i&gt; has multiple behaviours hence it is polymorphic.
+                        &lt;/p&gt;
+                &lt;/div&gt;
+               &lt;div class=&quot;col-lg-12&quot;&gt;
+                                &lt;h4&gt;Encapsulation&lt;/h4&gt;
+                                &lt;p&gt;Encapsulation is defined as collecting related data/ functionality in a single unit. It helps in ease of access/modification of data. E.g. If we have a need to print all the properties that a user posses, we have following options &lt;/p&gt;
+                                &lt;pre&gt;&lt;code&gt;
+                                printUserProperties(username, userid, firstname, lastname, email, phone, ... ... ....)
+                                &lt;/code&gt;
+                                &lt;/pre&gt;
+                                &lt;p&gt; We created a method which accepts all the features and print them one by one.
+                                With the increase in number of list of items, the ability to identify the correct field diminishes, also with addition/deletion of even a single field, changes the signature of this method. Hence we need to replace all clients of this method even if the newly added field is not required by them . To make the code more readable, and allow easier modifications, we encapsulate the properties in a class and pass it as a collective object.
+                                &lt;/p&gt;&lt;pre&gt;&lt;code&gt;
+                                class user{
+                                userName
+                                userId
+                                firstname
+                                lastname
+                                email
+                                phone
+                                ..
+                                ..
+                                ..
+                                
+                                }
+                                &lt;/code&gt;&lt;/pre&gt;
+                                &lt;pre&gt;&lt;code&gt;
+                                printUserProperties(user){
+                                }
+                                &lt;/code&gt;&lt;/pre&gt;
+                         &lt;/div&gt;
+        &lt;/div&gt;
+        
+&lt;div class=&quot;row&quot;&gt;
+          &lt;div class=&quot;col-lg-8 col-md-7 col-sm-6&quot;&gt;
+            &lt;h3&gt;Objects&lt;/h3&gt;
+            &lt;p&gt;An object is a software bundle of variables and related methods. You can represent real-world objects using software objects. You might want to represent real-world dogs as software objects in an animation program or a real-world bicycle as a software object within an electronic exercise bike.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;row&quot;&gt;
+          &lt;div class=&quot;col-lg-8 col-md-7 col-sm-6&quot;&gt;
+            &lt;h3&gt;Classes&lt;/h3&gt;
+            &lt;p&gt;In object-oriented programming, a class is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions, methods).&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;
+          &lt;div class=&quot;col-lg-8 col-md-7 col-sm-6&quot;&gt;
+            &lt;h3&gt;SOLID Principles&lt;/h3&gt;
+            &lt;p&gt;The SOLID acronym was introduced by Michael Feathers for the &quot;first five principles&quot; named by Robert C. Martin in the early 2000s. The principles, when applied together, intend to make it more likely that a programmer will create a system that is easy to maintain and extend over time. The principles of SOLID are guidelines that can be applied while working on software to remove code smells by causing the programmer to refactor the software&apos;s source code until it is both legible and extensible. It is part of an overall strategy of agile and adaptive programming.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;row&quot;&gt;
+                          &lt;div class=&quot;col-lg-12&quot;&gt;
+                                        &lt;h4&gt;Single responsibility principle&lt;/h4&gt;
+                                        &lt;p&gt;In object-oriented programming, the single responsibility principle states that every class should have responsibility over a single part of the functionality provided by the software, and that responsibility should be entirely encapsulated by the class. All its services should be narrowly aligned with that responsibility.&lt;/p&gt;
+                           &lt;/div&gt;
+                           &lt;div class=&quot;col-lg-12&quot;&gt;
+                                        &lt;h4&gt;Open/closed principle&lt;/h4&gt;
+                                        &lt;p&gt;In object-oriented programming, the open/closed principle states &quot;software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification&quot;; that is, such an entity can allow its behaviour to be extended without modifying its source code.&lt;/p&gt;
+                           &lt;/div&gt;
+                           &lt;div class=&quot;col-lg-12&quot;&gt;
+                                &lt;h4&gt;Liskov substitution principle&lt;/h4&gt;
+                                &lt;p&gt;Substitutability is a principle in object-oriented programming. It states that, in a computer program, if S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.).&lt;/p&gt;
+                            &lt;/div&gt;
+                &lt;div class=&quot;col-lg-12&quot;&gt;
+                        &lt;h4&gt;Interface segregation principle&lt;/h4&gt;
+                        &lt;p&gt;The interface-segregation principle (ISP) states that no client should be forced to depend on methods it does not use. ISP splits interfaces which are very large into smaller and more specific ones so that clients will only have to know about the methods that are of interest to them. ISP is intended to keep a system decoupled and thus easier to refactor, change, and redeploy.&lt;/p&gt;
+                &lt;/div&gt;
+                
+                &lt;div class=&quot;col-lg-12&quot;&gt;
+                        &lt;h4&gt;Dependency inversion principle&lt;/h4&gt;
+                        &lt;p&gt;In object-oriented programming, the dependency inversion principle refers to a specific form of decoupling software modules. When following this principle, the conventional dependency relationships established from high-level, policy-setting modules to low-level, dependency modules are inverted (i.e. reversed), thus rendering high-level modules independent of the low-level module implementation details. The principle states:
+        &lt;ul&gt;
+        &lt;li&gt;High-level modules should not depend on low-level modules. Both should depend on abstractions.&lt;/li&gt;
+        &lt;li&gt;Abstractions should not depend on details. Details should depend on abstractions.&lt;/li&gt;
+        &lt;/ul&gt;
+The principle inverts the way some people may think about object-oriented design, dictating that both high- and low-level objects must depend on the same abstraction.&lt;/p&gt;
+                &lt;/div&gt;
+
+           &lt;/div&gt;
+           
+          &lt;div class=&quot;row&quot;&gt;
+          &lt;div class=&quot;col-lg-8 col-md-7 col-sm-6&quot;&gt;
+            &lt;h3&gt;GRASP Principles&lt;/h3&gt;
+            &lt;p&gt;General Responsibility Assignment Software Patterns (or Principles), abbreviated GRASP, consists of guidelines for assigning responsibility to classes and objects in object-oriented design.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;row&quot;&gt;
+          &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;div class=&quot;&quot;&gt;
+                &lt;h4&gt;Controller&lt;/h4&gt;
+                &lt;p&gt;The Controller pattern assigns the responsibility of dealing with system events to a non-UI class that represents the overall system or a use case scenario. 
+                A Controller :&lt;/p&gt;
+                &lt;ul&gt;
+                &lt;li&gt; is a non-user interface object responsible for receiving or handling a system event.&lt;/li&gt;
+                &lt;li&gt; should be used to deal with all system events of a single (or related multiple) use cases&lt;/li&gt;
+                &lt;li&gt; is the first object beyond the UI layer that controls a system operation.
+                &lt;/li&gt;
+                &lt;/ul&gt;
+ &lt;p&gt; It should not do much work itself, apart from controlling the flow of the event&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;div class=&quot;&quot;&gt;
+                &lt;h4&gt;Creator&lt;/h4&gt;
+                &lt;p&gt;The responsibility of a creator class is to instantiate and create objects for usage. It knows what object to be created, and the initialization values. Sometimes the creator class creates objects activily and stores them in a cache, and provides one instance as and when required or asked for.
+&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;div class=&quot;&quot;&gt;
+                &lt;h4&gt;High Cohesion&lt;/h4&gt;
+                &lt;p&gt;High Cohesion is an evaluative pattern that attempts to keep objects appropriately focused, manageable and understandable. High cohesion is generally used in support of Low Coupling. High cohesion means that the responsibilities of a given element are strongly related and highly focused. Breaking programs into classes and subsystems is an example of activities that increase the cohesive properties of a system. Alternatively, low cohesion is a situation in which a given element has too many unrelated responsibilities. Elements with low cohesion often suffer from being hard to comprehend, hard to reuse, hard to maintain and averse to change.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;div class=&quot;&quot;&gt;
+                &lt;h4&gt;Indirection&lt;/h4&gt;
+                &lt;p&gt;The Indirection pattern supports low coupling (and reuse potential) between two elements by assigning the responsibility of mediation between them to an intermediate object. An example of this is the introduction of a controller component for mediation between data (model) and its representation (view) in the Model-view-controller pattern.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;div &gt;
+                &lt;h4&gt;Information Expert&lt;/h4&gt;
+                &lt;p&gt;Information Expert (also Expert or the Expert Principle) is a principle used to determine where to delegate responsibilities. These responsibilities include methods, computed fields, and so on.
+
+Using the principle of Information Expert, a general approach to assigning responsibilities is to look at a given responsibility, determine the information needed to fulfill it, and then determine where that information is stored.
+
+Information Expert will lead to placing the responsibility on the class with the most information required to fulfill it.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;div &gt;
+                &lt;h4&gt;Low Coupling&lt;/h4&gt;
+                &lt;p&gt;Low Coupling is an evaluative pattern, which dictates how to assign responsibilities to support:
+
+    lower dependency between the classes,
+    change in one class having lower impact on other classes,
+    higher reuse potential.
+&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+           &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;div &gt;
+                &lt;h4&gt;Polymorphism&lt;/h4&gt;
+                &lt;p&gt;According to Polymorphism, responsibility of defining the variation of behaviors based on type is assigned to the types for which this variation happens. This is achieved using polymorphic operations.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+           &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;div &gt;
+                &lt;h4&gt;Protected Variations&lt;/h4&gt;
+                &lt;p&gt;The Protected Variations pattern protects elements from the variations on other elements (objects, systems, subsystems) by wrapping the focus of instability with an interface and using polymorphism to create various implementations of this interface.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-6&quot;&gt;
+            &lt;div &gt;
+                &lt;h4&gt;Pure Fabrication&lt;/h4&gt;
+                &lt;p&gt;A Pure Fabrication is a class that does not represent a concept in the problem domain, specially made up to achieve low coupling, high cohesion, and the reuse potential thereof derived (when a solution presented by the Information Expert pattern does not). This kind of class is called &quot;Service&quot; in Domain-driven design.&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          
+      &lt;/div&gt;
+       
+         &lt;div class=&quot;row&quot;&gt;
+          &lt;div class=&quot;col-lg-8 col-md-7 col-sm-6&quot;&gt;
+            &lt;h3&gt;Criticism&lt;/h3&gt;
+            &lt;div class=&quot;row&quot;&gt;
+         
+            &lt;p&gt;A study by Potok et al. has shown no significant difference in productivity between OOP and procedural approaches.&lt;/p&gt;
+            
+             &lt;div class=&quot;col-lg-12&quot;&gt;
+          
+              &lt;blockquote&gt;
+                &lt;p&gt;critical comparison of OOP to other technologies, relational in particular, is difficult because of lack of an agreed-upon and rigorous definition of OOP&lt;/p&gt;
+                &lt;cite title=&quot;Source Title&quot;&gt;Christopher J. Date&lt;/cite&gt;
+              &lt;/blockquote&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-12&quot;&gt;
+              &lt;blockquote&gt;
+                &lt;p&gt;compared to other languages (LISP dialects, functional languages, etc.) OOP languages have no unique strengths, and inflict a heavy burden of unneeded complexity.&lt;/p&gt;
+                &lt;cite title=&quot;Source Title&quot;&gt;Lawrence Krubner&lt;/cite&gt;
+              &lt;/blockquote&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-12&quot;&gt;
+              &lt;blockquote&gt;
+                &lt;p&gt;I find OOP technically unsound. It attempts to decompose the world in terms of interfaces that vary on a single type. To deal with the real problems you need multisorted algebras — families of interfaces that span multiple types. I find OOP philosophically unsound. It claims that everything is an object. Even if it is true it is not very interesting — saying that everything is an object is saying nothing at all.&lt;/p&gt;
+                &lt;cite title=&quot;Source Title&quot;&gt;Alexander Stepanov&lt;/cite&gt;
+              &lt;/blockquote&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-12&quot;&gt;
+              &lt;blockquote&gt;
+                &lt;p&gt;OOP&apos;s popularity within large companies is due to &quot;large (and frequently changing) groups of mediocre programmers.&quot; The discipline imposed by OOP prevents any one programmer from &quot;doing too much damage.&quot;&lt;/p&gt;&lt;cite title=&quot;Source Title&quot;&gt;Paul Graham&lt;/cite&gt;
+              &lt;/blockquote&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;col-lg-12&quot;&gt;
+              &lt;blockquote&gt;
+                &lt;p&gt;Object Oriented Programming puts the Nouns first and foremost. Why would you go to such lengths to put one part of speech on a pedestal? Why should one kind of concept take precedence over another? It&apos;s not as if OOP has suddenly made verbs less important in the way we actually think. It&apos;s a strangely skewed perspective.&lt;cite title=&quot;Source Title&quot;&gt;Steve Yegge&lt;/cite&gt;&lt;/p&gt;
+              &lt;/blockquote&gt;
+          &lt;/div&gt;
+         &lt;/div&gt;
+         &lt;div&gt;
+
+&lt;p&gt;
+Rich Hickey, creator of Clojure, described object systems as overly simplistic models of the real world. He emphasized the inability of OOP to model time properly, which is getting increasingly problematic as software systems become more concurrent.&lt;/p&gt;
+&lt;p&gt;
+Eric S. Raymond, a Unix programmer and open-source software advocate, has been critical of claims that present object-oriented programming as the &quot;One True Solution,&quot; and has written that object-oriented programming languages tend to encourage thickly layered programs that destroy transparency.[42] Raymond contrasts this to the approach taken with Unix and the C programming language.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        
+        
+          
+        &lt;/div&gt;
+        &lt;div class=&quot;row&quot;&gt;
+          &lt;div class=&quot;col-lg-12&quot;&gt;
+                &lt;div class=&quot;&quot;&gt;
+                &lt;h2&gt;References&lt;/h2&gt;
+                      &lt;div class=&quot;list-group&quot;&gt;
+                        &lt;a href=&quot;http://searchsoa.techtarget.com/definition/object-oriented-programming&quot; target=&quot;_blank&quot; class=&quot;list-group-item&quot;&gt;By Margaret Rouse @ WhatIs.com
+                        &lt;/a&gt;
+                        &lt;a href=&quot;https://en.wikipedia.org/?title=Object-oriented_programming&quot; target=&quot;_blank&quot; class=&quot;list-group-item&quot;&gt; Wikipedia! &lt;/a&gt;
+                        &lt;a href=&quot;http://www.sitepoint.com/quick-guide-to-polymorphism-in-java/&quot; target=&quot;_blank&quot; class=&quot;list-group-item&quot;&gt;inheritance is polymorphism&lt;/a&gt;
+                        &lt;a href=&quot;https://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29&quot; target=&quot;_blank&quot; class=&quot;list-group-item&quot;&gt;SOLID (Object Oriented Design)&lt;/a&gt;
+                        &lt;a href=&quot;https://en.wikipedia.org/wiki/Single_responsibility_principle&quot; target=&quot;_blank&quot; class=&quot;list-group-item&quot;&gt;Single Responsibility Principle&lt;/a&gt;
+                        &lt;a href=&quot;http://c2.com/cgi/wiki?ArgumentsAgainstOop&quot; target=&quot;_blank&quot; class=&quot;list-group-item&quot;&gt;Arguments against OOPS&lt;/a&gt;
+                        &lt;a href=&quot;http://duramecho.com/ComputerInformation/WhatIsObjectOrientedProgramming.html&quot; target=&quot;_blank&quot; class=&quot;list-group-item&quot;&gt;What is OOPS (without the hype)&lt;/a&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+           &lt;/div&gt;
+       
+
+	</description>
+    </item>
+    <item>
+      <title>Creating String with new operator</title>
+      <link>http://jbake.org/blog/2013/Creating String with new operator.html</link>
+      <pubDate>Wed, 24 Apr 2013 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2013/Creating String with new operator.html</guid>
+      	<description>
+	&lt;p&gt;What is the difference between following String object creations?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;String a = new String(&amp;quot;hello world&amp;quot;);
+String a =&amp;quot;hello world&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When ever a java program encounters a first double quote (&quot;) it treats it as beginning of a String Object, and the ending is recognized by consecutive double quote.&lt;/p&gt;&lt;p&gt;going by the above fact, let us analyse the above two statements&lt;/p&gt;&lt;p&gt;L.H.S:&lt;/p&gt;&lt;p&gt;String a : We are creating a reference of type String and naming it a&lt;/p&gt;&lt;p&gt;R.H.S&lt;/p&gt;&lt;p&gt;&quot;hello world&quot; : A string object with value &quot;hello world&quot; is created and added in String pool&lt;/p&gt;&lt;p&gt;In the statement String a =&quot;hello world&quot;; the reference a is now referring to the object created and added to String pool.&lt;/p&gt;&lt;p&gt;new String (&quot;hello world&quot;);: In this statement one object is created with value &quot;hello world&quot; and the same is added to the string pool when the highlighted part is encountered. new String (&quot;hello world&quot;). After that, another object is created by the new operator new String (&quot;hello world&quot;), please note that this newly created object (by new operator) is not added to String pool.&lt;/p&gt;&lt;p&gt;String a = new String(&quot;hello world&quot;);&lt;/p&gt;&lt;p&gt;In the above statement, the reference a is referring to an object which is not present in String pool.&lt;/p&gt;&lt;p&gt;There is a method intern() available in String class. When the intern method is invoked, if the pool already contains a string equal to this String object as determined by the equals(Object) method, then the string from the pool is returned. Otherwise, this String object is added to the pool and a reference to this String object(from pool) is returned.&lt;/p&gt;
+	</description>
+    </item>
+    <item>
+      <title>Faking existing classes from JVM</title>
+      <link>http://jbake.org/blog/2013/Faking String Class.html</link>
+      <pubDate>Wed, 24 Apr 2013 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2013/Faking String Class.html</guid>
+      	<description>
+	&lt;p&gt;&lt;strong&gt;Can we create and compile a class String, with package name java.lang ? Will it override the functionality of the existing class present in JVM ?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Surprizingly, we can create any class in any package, and if basic rules of compilation are followed, &lt;strong&gt;&lt;em&gt;it will compile fine&lt;/em&gt;&lt;/strong&gt;. Going by that, we can actually compile a class String in java.lang Package. But at run-time, JVM&apos;s java.lang package has a higher priority over user created java.lang package, hence original class (provided by JVM) will be referred. Try creating a String class with a method &quot;printMyName() in java.lang package. Create a main class and call that method. The program will not give any compilation error (as at compile time the class u created is being referred) but at run time you will get java.lang.NoSuchMethodError (as the original class which is present in JVM is being referred and it does not contains this method)&lt;/p&gt;
+	</description>
+    </item>
+    <item>
+      <title>How to run a Java Application without main method?</title>
+      <link>http://jbake.org/blog/2013/alternative program initiation point.html</link>
+      <pubDate>Wed, 24 Apr 2013 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2013/alternative program initiation point.html</guid>
+      	<description>
+	&lt;p&gt;public static void main(String[] args) is usually considered the entry point of an application (which is true). But there is a case where we can tweak around and omit the need of main method completely. The answer lies in the keyword &quot;static&quot;.&lt;/p&gt;&lt;p&gt;A static block is one per class block (independent of objects). since this block is one per class, it will be called at the time of class load, not at the time of object creation. Usually this block is used to initialize static variables of the class.&lt;/p&gt;&lt;p&gt;static blocks are loaded first in JVM (even prior to main method). we can even call other static methods from this block (exactly similar to main method).&lt;/p&gt;&lt;p&gt;consider the code below:&lt;/p&gt;&lt;p&gt;public class WithoutMain{&lt;/p&gt;&lt;p&gt;static{&lt;/p&gt;&lt;p&gt;System.out.println(&quot;Hello world&quot;);&lt;/p&gt;&lt;p&gt;}&lt;/p&gt;&lt;p&gt;}&lt;/p&gt;&lt;p&gt;When this class is loaded in JVM, the anonymous static block is loaded and executed before anything else and the SysOut statement is executed.&lt;/p&gt;&lt;p&gt;Being said this, the entry point remains still the same (main method) i.e. even if static block is present, the JVM will look for main method. if this method does not exist, following exception would be raised&lt;/p&gt;&lt;p&gt;Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: main&lt;/p&gt;&lt;p&gt;We can even tweak around this. The exit(int) method of System class is used to exit the program. The int argument defines the state of program exit. A successful program will exit with a state &apos;0&apos;. Hence writing a statement System.exit(0); would immediately end the application (before JVM can try to find the main method). &lt;/p&gt;&lt;p&gt;public class WithoutMain{&lt;/p&gt;&lt;p&gt;static{&lt;/p&gt;&lt;p&gt;System.out.println(&quot;Hello world&quot;);&lt;/p&gt;&lt;p&gt;System.exit(0);&lt;/p&gt;&lt;p&gt;}&lt;/p&gt;&lt;p&gt;}&lt;/p&gt;
+	</description>
+    </item>
+    <item>
+      <title>CharSequence vs String</title>
+      <link>http://jbake.org/blog/2013/charsequence vs string.html</link>
+      <pubDate>Wed, 24 Apr 2013 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2013/charsequence vs string.html</guid>
+      	<description>
+	&lt;p&gt;CharSequence represents an interface to a sequence of characters, with operations common to all classes implementing it. However, in particular, CharSequence does not make any guarantees about whether the sequence is mutable or not. So, you can have an immutable implementing class, like String or mutable ones, like StringBuilder and StringBuffer.&lt;/p&gt;&lt;p&gt;In addition, CharSequence does not refine the general purpose implementations of the equals() or hashCode() methods, so there is no guarantee that objects of different classes implementing CharSequence will compare to be equal even if the underlying sequence that they hold is the same. So, given:&lt;/p&gt;&lt;p&gt;String seq1 = &quot;hello&quot;;&lt;/p&gt;&lt;p&gt;StringBuilder seq2 = new StringBuilder(&quot;hello&quot;);&lt;/p&gt;&lt;p&gt;StringBuffer seq3 = new StringBuffer(&quot;hello&quot;);&lt;/p&gt;&lt;p&gt;comparisons between these three using .equals() return false on Java 1.6, but I can&apos;t find any guarantees that this will not change in the future (though it&apos;s probably fairly unlikely).&lt;/p&gt;&lt;p&gt;And CharSequence[] and String[] are just arrays of their respective types.&lt;/p&gt;&lt;p&gt;The practical upshot of this is to compare CharSequences for equality, you have to use their toString() method and compare the resultant Strings, since this is guaranteed to return true if the underlying sequences are the same.&lt;/p&gt;
+	</description>
+    </item>
+    <item>
+      <title>int vs Integer class</title>
+      <link>http://jbake.org/blog/2013/int vs integer.html</link>
+      <pubDate>Wed, 24 Apr 2013 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2013/int vs integer.html</guid>
+      	<description>
+	&lt;ul&gt;
+  &lt;li&gt;Primitives are not objects&lt;/li&gt;
+  &lt;li&gt;We cannot perform any function on primitives&lt;/li&gt;
+  &lt;li&gt;Primitives are stored on Stack, Wrapper Objects are stored on heap&lt;/li&gt;
+  &lt;li&gt;primitives store value where as objects store a reference to actual objects. (References are not present for primitives)&lt;/li&gt;
+  &lt;li&gt;since primitives are stored on stack, they will be garbage collected once their visibility is over. Objects on other hand are present on heap, so their Garbage collection decision making is a bit complex.&lt;/li&gt;
+  &lt;li&gt;Wrapper Class Integer create final objects where as the value of int is modifiable.&lt;/li&gt;
+&lt;/ul&gt;
+	</description>
+    </item>
+    <item>
+      <title>Pass by Reference - Java</title>
+      <link>http://jbake.org/blog/2013/pass by reference.html</link>
+      <pubDate>Wed, 24 Apr 2013 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2013/pass by reference.html</guid>
+      	<description>
+	&lt;p&gt;Well, this is one of those tricky questions. The correct answer to this question would be&lt;/p&gt;&lt;p&gt;Theoretically: No, Practically: Yes&lt;/p&gt;&lt;p&gt;All passing in Java are Pass-By-Value only. Which means, the value of argument being passed is copied and provided to the called method. In case when the argument of method is of type Object (or sub-class) the value of such an argument is a reference. In this case a copy of this value (which is a reference) is made (but it still refers to same reference) and passed to the called method. So theoretically it is Pass-by-Value but it behaves like Pass-By-Reference here because the value itself is a reference here. &lt;/p&gt;
+	</description>
+    </item>
+    <item>
+      <title>Interface vs Abstract Class</title>
+      <link>http://jbake.org/blog/2013/interface vs abstract class.html</link>
+      <pubDate>Fri, 8 Mar 2013 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2013/interface vs abstract class.html</guid>
+      	<description>
+	Below is a summary of differences
+
+&lt;table &gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;th&gt;S.no&lt;/th&gt;&lt;th&gt;Abstract Class&lt;/th&gt;&lt;th&gt;Interface&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Abstract Class can have methods with definition&lt;/td&gt;
+&lt;td&gt;Interface cannot have any method with definition&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;Abstract Class can have variable fields&lt;/td&gt;
+&lt;td&gt;Interface can only have constant fields&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;Abstract Class cannot be used for multiple inheritance&lt;/td&gt;
+&lt;td&gt;Interface can be used for multiple inheritance&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;Abstract Class makes use of VTable for method mappings&lt;/td&gt;
+&lt;td&gt;Interface do not have such capabilities&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt; 
+
+PS: This is before Java 8
+
+	</description>
+    </item>
+    <item>
+      <title>What is the difference between &quot;==&quot; and .equals() Method ?</title>
+      <link>http://jbake.org/blog/2012/what-is-the-difference-between-and-equals-method.html</link>
+      <pubDate>Thu, 27 Sep 2012 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2012/what-is-the-difference-between-and-equals-method.html</guid>
+      	<description>
+	&lt;p&gt;Equating two pbjects is a very common condition required while writing programs in any language.&lt;br/&gt;Java provides us two options for equating two objects.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;By Using Operator ==&lt;/li&gt;
+  &lt;li&gt;By Using Method equals&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;To understand which one should we chose, let us think like the creators of the Java language would have thought. Assume that we are going to write the functionality for the operator &quot;==&quot;. Our aim is to find out if L.H.S is equal to R.H.S or not. Another target that we need to achieve is that this operator should work on all kinds of objects, including those which are not even defined today (we are writing the java language).&lt;/p&gt;&lt;p&gt;How can we equate two objects, whose classes are not even written till date? There has to be a factor on which we can decide if the objects are equal or not. There is one, and only one such scenario in which we can be sure that L.H.S is equal to R.H.S, and that is when &lt;em&gt;both the objects are placed on same memory location&lt;/em&gt;. This is true, because one memory location cannot keep a hold of more than one object reference. And this is exactly what Java guys did. They wrote the code for this operator to match the references (in turn, Memory location) on both the sides. If they refer to same memory location, they are equal else not.&lt;/p&gt;&lt;p&gt;If == operator solves our purpose, then what is the use of equals method? In fact, if you check the class Object in java, equals method does nothing more than using == operator.&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;public boolean equals(Object obj) {   
+
+        return (this == obj)
+
+ }&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Consider a scenario, you have two objects of same class, having exactly same values of member variables but since they are present on different memory locations, == operator will return &apos;false&apos; for them.&lt;/p&gt;&lt;p&gt;What will equals method return? &lt;/p&gt;&lt;p&gt;To be on safer side, I will simply say that when equals method is called, its definition will be executed.&lt;/p&gt;&lt;p&gt;Where is the definition present? It is in the Object Class. So the equals method will still return &apos;false&apos; as it is simply calling == operator.&lt;/p&gt;&lt;p&gt;So what is the solution, if we want to equate two objects based on the values inside,and not on the basis of its memory location?&lt;/p&gt;&lt;p&gt;Remember the concept of method overriding? It is the technique of hiding method definition in parent class by providing a new method definition with same signature in child class. So making use of method overriding we will give the definition of equals method, and it will behave according to this new definition. One fine example can be seen in String class. &lt;/p&gt;&lt;p&gt;The equals method here, equates two objects on the basis of there values and ignores the memory location they are on.&lt;/p&gt;&lt;p&gt;So for String class&lt;br/&gt;&lt;pre class=&quot;prettyprint&quot;&gt;&lt;br/&gt;&lt;code&gt;String first = new String (&quot;test&quot;); // creates a new string object with value &quot;test&quot;&lt;br/&gt;String second= new String (&quot;test&quot;);// creates another string object with value &quot;test&quot; at different memory location&lt;br/&gt;first.equals(second) // returns true as values are compared&lt;br/&gt;first==second // returns false as memory location is compared.&lt;/code&gt;&lt;br/&gt;&lt;/pre&gt;&lt;/p&gt;&lt;p&gt;This was good for String class, only because String defines its own equals method. Point to be noted here is for any class which does not defines equals method of its own, the method definition will still be available (From top most parent class i.e. Object). And for such classes equals method will behave exactly similar to == operator.&lt;/p&gt;
+	</description>
+    </item>
+
+  </channel> 
+</rss>

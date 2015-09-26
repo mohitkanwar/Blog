@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="UTF-16"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="generator" content="Bootply-JBake-Custom"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-16"/>
+<meta name="description" content="Faking existing classes from JVM -by Mohit Kanwar"/>
+<meta name="author" content="Mohit Kanwar"/>
+<meta name="keywords" content="Mohit, Kanwar, Mohit Kanwar"/>
+<title>Faking existing classes from JVM -by Mohit Kanwar</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+    <link href="../../css/styles.css" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+<link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+<div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="./index.html" class="navbar-brand">My Learning Plan</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+         
+        </div>
+      </div>
+    </div>
+	 <div class="container">
+                <div class="page-header" id="banner">
+                        <div class="row">
+                                <div class="col-lg-8 col-md-7 col-sm-6">
+                                        <h1>Faking existing classes from JVM</h1>
+                                        <p><em>24 April 2013</em></p>
+                                        <p class="lead">A try to create a fake java.lang.String class</p>
+	                        </div>
+                        </div>
+                 </div>
+          <p><strong>Can we create and compile a class String, with package name java.lang ? Will it override the functionality of the existing class present in JVM ?</strong></p><p>Surprizingly, we can create any class in any package, and if basic rules of compilation are followed, <strong><em>it will compile fine</em></strong>. Going by that, we can actually compile a class String in java.lang Package. But at run-time, JVM's java.lang package has a higher priority over user created java.lang package, hence original class (provided by JVM) will be referred. Try creating a String class with a method "printMyName() in java.lang package. Create a main class and call that method. The program will not give any compilation error (as at compile time the class u created is being referred) but at run time you will get java.lang.NoSuchMethodError (as the original class which is present in JVM is being referred and it does not contains this method)</p>
+          </div>
+		</div>
+		<div id="push"></div>
+    <div id="footer">
+      <div class="container">
+
+      </div>
+    </div>
+   <script src="../../js/jquery-1.11.1.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prettify.js"></script>
+  </body>
+</html>
