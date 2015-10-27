@@ -6,9 +6,77 @@
     <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Mon, 19 Oct 2015 14:17:17 +0530</pubDate>
-    <lastBuildDate>Mon, 19 Oct 2015 14:17:17 +0530</lastBuildDate>
+    <pubDate>Tue, 27 Oct 2015 15:07:34 +0530</pubDate>
+    <lastBuildDate>Tue, 27 Oct 2015 15:07:34 +0530</lastBuildDate>
 
+    <item>
+      <title>Markdown</title>
+      <link>http://jbake.org/blog/2015/markdown.html</link>
+      <pubDate>Tue, 27 Oct 2015 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2015/markdown.html</guid>
+      	<description>
+	&lt;div id=&quot;mainContent&quot;&gt;
+	
+	&lt;p&gt;
+		Markdown is a specific &lt;b&gt;markup&lt;/b&gt; library and text-to-HTML conversion tool for web writers. Markdown allows us to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).&lt;br/&gt;
+		Although Markdown is not a replacement of HTML, it is especially useful for creating simple articles like writing blogs, forums readme files etc.&lt;br/&gt;
+		Below is a syntax comparison
+		&lt;table&gt;
+			&lt;tr&gt;&lt;td&gt;&lt;td&gt;Markdown&lt;/td&gt;&lt;td&gt;HTML&lt;/td&gt;&lt;td&gt;compiled output in browser&lt;/td&gt;&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Heading&lt;/td&gt;
+								&lt;td&gt;This is a heading&lt;br/&gt;
+			                        ==============
+			&lt;/td&gt;&lt;td&gt;&amp;lt;h1&amp;gt;This is a heading&amp;lt;/h1&amp;gt;&lt;/td&gt;&lt;td&gt;&lt;h1&gt;This is a heading&lt;/h1&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Heading (alternative)&lt;/td&gt;
+								&lt;td&gt;#This is a heading&lt;/td&gt;&lt;td&gt;&amp;lt;h1&amp;gt;This is a heading&amp;lt;/h1&amp;gt;&lt;/td&gt;&lt;td&gt;&lt;h1&gt;This is a heading&lt;/h1&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Sub Heading&lt;/td&gt;
+								&lt;td&gt;This is a sub heading&lt;br/&gt;
+								---------------
+			&lt;/td&gt;&lt;td&gt;&amp;lt;h2&amp;gt;This is a sub heading&amp;lt;/h2&amp;gt;&lt;/td&gt;&lt;td&gt;&lt;h2&gt;This is a sub heading&lt;/h2&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Sub Heading (alternative)&lt;/td&gt;
+								&lt;td&gt;##This is a sub heading&lt;/td&gt;&lt;td&gt;&amp;lt;h2&amp;gt;This is a sub heading&amp;lt;/h2&amp;gt;&lt;/td&gt;&lt;td&gt;&lt;h2&gt;This is a sub heading&lt;/h2&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;H3 - H6&lt;/td&gt;
+								&lt;td&gt;###Match the number of # to the heading level&lt;/td&gt;&lt;td&gt;&amp;lt;h3&amp;gt;Match the number of # to the heading level&amp;lt;/h3&amp;gt;&lt;/td&gt;&lt;td&gt;&lt;h3&gt;Match the number of # to the heading level&lt;/h3&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Paragraphs&lt;/td&gt;
+								&lt;td&gt;Paragraphs are separated&lt;br&gt;&lt;br&gt;
+by a blank line.&lt;/td&gt;&lt;td&gt;&amp;lt;p&amp;gt;Paragraphs are separated&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;by a blank line.&amp;lt;/p&amp;gt;&lt;/td&gt;&lt;td&gt;&lt;p&gt;Paragraphs are separated&lt;/p&gt;&lt;p&gt;by a blank line.&lt;/p&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Line Breaks&lt;/td&gt;
+								&lt;td&gt;&lt;font background=&quot;red&quot;&gt; Line breaks are represented by two spaces&amp;npsp;&amp;nbsp;&lt;br&gt;
+at the end of a line.&lt;/font&gt;&lt;/td&gt;&lt;td&gt;&amp;lt;p&amp;gt;Line breaks are represented by two spaces&amp;lt;br&amp;gt;at the end of a line.&amp;lt;/p&amp;gt;&lt;/td&gt;&lt;td&gt;&lt;p&gt;Line breaks are represented by two spaces&lt;br&gt;at the end of a line.&lt;/p&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Text attributes&lt;/td&gt;
+								&lt;td&gt;*italic*, **bold**,
+`monospace`, ~~strikethrough~~ &lt;/td&gt;&lt;td&gt;&amp;lt;i&amp;gt;italic&amp;lt;/i&amp;gt;,&amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;,&amp;lt;code&amp;gt;monospace&amp;lt;/code&amp;gt;,&amp;lt;s&amp;gt;strikethrough&amp;lt;/s&amp;gt;&lt;/td&gt;&lt;td&gt;&lt;i&gt;italic&lt;/i&gt;,&lt;b&gt;bold&lt;/b&gt;,&lt;code&gt;monospace&lt;/code&gt;,&lt;s&gt;strikethrough&lt;/s&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;&lt;td&gt;Link&lt;/td&gt;
+								&lt;td&gt;A [link](http://example.com) &lt;/td&gt;&lt;td&gt;A &amp;lt;a href=&quot;http://example.com&quot;&amp;gt;link&amp;lt;/a&amp;gt;&lt;/td&gt;&lt;td&gt;A &lt;a href=&quot;http://example.com&quot;&gt;link&lt;/a&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+				&lt;tr&gt;&lt;td&gt;Unordered List&lt;/td&gt;
+								&lt;td&gt; * Option 1 &lt;br&gt;
+								     * Option 2 &lt;br&gt;
+								     * Option 3 &lt;/td&gt;&lt;td&gt;
+&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;Option 1&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;Option 2&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;Option 3&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;
+								     &lt;/td&gt;&lt;td&gt;&lt;ul&gt;&lt;li&gt;Option 1&lt;/li&gt;&lt;li&gt;Option 2&lt;/li&gt;&lt;li&gt;Option 3&lt;/li&gt;&lt;/ul&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			 &lt;tr&gt;&lt;td&gt;Ordered List&lt;/td&gt;
+								&lt;td&gt; 1. Option 1 &lt;br&gt;
+								     2. Option 2 &lt;br&gt;
+								     3. Option 3 &lt;/td&gt;&lt;td&gt;
+&amp;lt;ol&amp;gt;&amp;lt;li&amp;gt;Option 1&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;Option 2&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;Option 3&amp;lt;/li&amp;gt;&amp;lt;/ol&amp;gt;
+								     &lt;/td&gt;&lt;td&gt;&lt;ol&gt;&lt;li&gt;Option 1&lt;/li&gt;&lt;li&gt;Option 2&lt;/li&gt;&lt;li&gt;Option 3&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/p&gt;
+&lt;/div&gt;
+
+	</description>
+    </item>
     <item>
       <title>Sassy CSS</title>
       <link>http://jbake.org/blog/2015/sass.html</link>
