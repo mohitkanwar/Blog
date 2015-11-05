@@ -9,6 +9,14 @@
         <lastmod>2013-09-24</lastmod>
     </url>
     <url>
+        <loc>http://jbake.org/projects/blog/about.html</loc>
+        <lastmod>2013-09-24</lastmod>
+    </url>
+    <url>
+        <loc>http://jbake.org/projects/chess/chess.html</loc>
+        <lastmod>2013-09-24</lastmod>
+    </url>
+    <url>
         <loc>http://jbake.org/blog/2015/markdown.html</loc>
         <lastmod>2015-10-27</lastmod>
     </url>
@@ -51,5 +59,13 @@
     <url>
         <loc>http://jbake.org/blog/2012/what-is-the-difference-between-and-equals-method.html</loc>
         <lastmod>2012-09-27</lastmod>
+    </url>
+    <url>
+        <loc>http://jbake.org/tech.html</loc>
+        <lastmod>2013-09-24</lastmod>
+    </url>
+    <url>
+        <loc>http://jbake.org/projects/projects.html</loc>
+        <lastmod>2013-09-24</lastmod>
     </url>
 </urlset>
