@@ -6,16 +6,25 @@
     <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Mon, 9 Nov 2015 09:24:31 +0530</pubDate>
-    <lastBuildDate>Mon, 9 Nov 2015 09:24:31 +0530</lastBuildDate>
+    <pubDate>Tue, 24 Nov 2015 12:46:57 +0530</pubDate>
+    <lastBuildDate>Tue, 24 Nov 2015 12:46:57 +0530</lastBuildDate>
 
+    <item>
+      <title>Freemarker</title>
+      <link>http://jbake.org/blog/2015/freemarker.html</link>
+      <pubDate>Sun, 22 Nov 2015 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2015/freemarker.html</guid>
+      	<description>
+	&lt;h2&gt;Ideology&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/projects/blog/Freemarker.jpeg&quot;/&gt;&lt;/p&gt;&lt;h2&gt;Templates&lt;/h2&gt;&lt;p&gt;Read more about Freemarker at its &lt;a href=&quot;http://freemarker.incubator.apache.org/docs/dgui.html&quot;&gt;official website&lt;/a&gt;&lt;/p&gt;
+	</description>
+    </item>
     <item>
       <title>How to review a code</title>
       <link>http://jbake.org/blog/2015/review-process.html</link>
       <pubDate>Fri, 6 Nov 2015 00:00:00 +0530</pubDate>
       <guid isPermaLink="false">blog/2015/review-process.html</guid>
       	<description>
-	&lt;h3&gt;Points to pre-review (discuss with developer)&lt;/h3&gt;
+	&lt;h3&gt;Code-Review Process&lt;/h3&gt;&lt;p&gt;Reviewing a code essentially means, re-visiting the problem which is fixed by the code from a fresh view point. When a single brain is working on the code for long, (S)he may become biased towards the code and may miss some potential bugs.&lt;br/&gt;Along with identification of bugs, code review helps in improving the code readability and code quality in general. If the code is not easily understandable in first go to the person who hasn&apos;t worked on it, It needs to be improved.&lt;br/&gt;Code review process can happen with single peer or with whole team. &lt;/p&gt;&lt;h3&gt;Points to pre-review (discuss with developer)&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;Is the code compiling?&lt;/li&gt;
   &lt;li&gt;Is the first functionality change fine?&lt;/li&gt;
@@ -26,7 +35,7 @@
   &lt;li&gt;Read the requirement and re-word it as per your understanding&lt;/li&gt;
   &lt;li&gt;Talk to the QA with your understanding&lt;/li&gt;
   &lt;li&gt;Talk to the developer with your refined (after QA&apos;s discussion) understanding&lt;/li&gt;
-  &lt;li&gt;Check&lt;br/&gt; * Code Compilation&lt;br/&gt; * Functionality change (compare it to code base where the change is not present)&lt;br/&gt; * Think of the required test cases&lt;br/&gt; * Compare them with the test cases already written&lt;br/&gt; * Check test case report&lt;br/&gt; * Check naming convention -- (check relevence as a human)&lt;br/&gt; * Check out for unused variables -- (automate)&lt;br/&gt; * Check out for variables used only once -- (automate)&lt;br/&gt; * Double check if Last date of modification of file is more than 2 sprints -- (automate)&lt;/li&gt;
+  &lt;li&gt;Check&lt;br/&gt; * Code Compilation&lt;br/&gt; * Functionality change (compare it to code base where the change is not present)&lt;br/&gt; * Think of the required test cases&lt;br/&gt; * Compare them with the test cases already written&lt;br/&gt; * Check test case report&lt;br/&gt; * Check naming convention -- (check relevence as a human)&lt;br/&gt; * Check out for unused variables -- (automate)&lt;br/&gt; * Check out for variables used only once -- (automate)&lt;br/&gt; * Double check if Last date of modification of file is more than 2 sprints -- (automate)&lt;br/&gt; * Look for Side affects of each command&lt;br/&gt; * Is the code readable?&lt;br/&gt; * Concurrency- check for multi-threading related issues&lt;br/&gt; * Consistency&lt;br/&gt; * Performance&lt;br/&gt; * Exception handling&lt;br/&gt; * Logging&lt;br/&gt; * Look for Potential Copy-Paste Errors&lt;br/&gt; * Simplicity&lt;br/&gt; * Reuse of existing code&lt;/li&gt;
 &lt;/ul&gt;
 	</description>
     </item>
