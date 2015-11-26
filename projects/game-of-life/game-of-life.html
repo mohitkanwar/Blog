@@ -16,6 +16,9 @@
     <link href="../../css/styles.css" rel="stylesheet">
     <link href="../../css/animate.css" rel="stylesheet">
 <link rel="shortcut icon" href="../../favicon.ico">
+<script src="../../js/jquery-1.11.1.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prettify.js"></script>
   </head>
   <body onload="prettyPrint()">
     <div id="wrap">
@@ -54,7 +57,9 @@
 2) Any live cell with two or three live neighbours lives on to the next generation.
 3) Any live cell with more than three live neighbours dies, as if by over-population.
 4) Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-</code></pre><p>The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed—births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick (in other words, each generation is a pure function of the preceding one). The rules continue to be applied repeatedly to create further generations.</p><h2>Github location</h2><p>The project is checked in at <a href="https://github.com/mohitkanwar/Game-of-Life">https://github.com/mohitkanwar/Game-of-Life</a></p><h2>Further Readings</h2><p><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">https://en.wikipedia.org/wiki/Conway's_Game_of_Life</a></p><h2>Learnings</h2>
+</code></pre><p>The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed—births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick (in other words, each generation is a pure function of the preceding one). The rules continue to be applied repeatedly to create further generations.</p><p>Draw a pattern in below grid. (Clicking on a cell toggles between being alive and dead). Click on Show next gen button to get the results in next generation.<br/>You may check Loop Continuously checkbox to repeat generations. Grid size may be modified by entring values in the corresponding text box.</p>
+<div id="universeHolder"></div>
+<script type="text/javascript" src="/js/projects/game-of-life/game-of-life.js"></script><h2>Github location</h2><p>The project is checked in at <a href="https://github.com/mohitkanwar/Game-of-Life">https://github.com/mohitkanwar/Game-of-Life</a></p><h2>Further Readings</h2><p><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">https://en.wikipedia.org/wiki/Conway's_Game_of_Life</a></p><h2>Learnings</h2>
           </div>
 		</div>
 		<div id="push"></div>
@@ -63,8 +68,6 @@
 
       </div>
     </div>
-   <script src="../../js/jquery-1.11.1.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/prettify.js"></script>
+   
   </body>
 </html>
