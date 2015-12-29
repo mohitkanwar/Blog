@@ -6,9 +6,18 @@
     <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Sun, 29 Nov 2015 19:40:16 +0530</pubDate>
-    <lastBuildDate>Sun, 29 Nov 2015 19:40:16 +0530</lastBuildDate>
+    <pubDate>Tue, 29 Dec 2015 15:39:21 +0530</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2015 15:39:21 +0530</lastBuildDate>
 
+    <item>
+      <title>Insertion Sort</title>
+      <link>http://jbake.org/blog/2015/insertionsort.html</link>
+      <pubDate>Sun, 29 Nov 2015 00:00:00 +0530</pubDate>
+      <guid isPermaLink="false">blog/2015/insertionsort.html</guid>
+      	<description>
+	&lt;h1&gt;What&lt;/h1&gt;&lt;p&gt;Insertion sort is a&lt;br/&gt; * Simple&lt;br/&gt; * Efficient (for small data sets)&lt;br/&gt; * More efficient in practice than most other simple quadratic (i.e., O(n2)) algorithms such as selection sort or bubble sort&lt;br/&gt; * Adaptive, i.e., efficient for data sets that are already substantially sorted&lt;br/&gt; * Stable; i.e., does not change the relative order of elements with equal keys&lt;br/&gt; * In-place; i.e., only requires a constant amount O(1) of additional memory space&lt;br/&gt; * Online; i.e., can sort a list as it receives it&lt;/p&gt;&lt;p&gt;When people manually sort cards in a bridge hand, most use a method that is similar to insertion sort.&lt;/p&gt;&lt;h1&gt;The Algo&lt;/h1&gt;&lt;h1&gt;References&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Insertion_sort&quot;&gt;https://en.wikipedia.org/wiki/Insertion_sort&lt;/a&gt;&lt;/p&gt;
+	</description>
+    </item>
     <item>
       <title>Freemarker</title>
       <link>http://jbake.org/blog/2015/freemarker.html</link>
