@@ -1,0 +1,1 @@
+$(document).ready(function(){$.getJSON("/allpages.json",function(B){var A=new Array();$.each(B.pages,function(C,D){if(A.indexOf(D.page.category)<0){A[A.length]=D.page.category}});$.each(A,function(C,D){$("#listofarticles").append("<li><a href=#>"+D+"</a></li>")})})});
