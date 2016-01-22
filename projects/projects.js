@@ -1,1 +1,1 @@
-$(document).ready(function(){$.getJSON("/allpages.json",function(B){var A=[];$.each(B.pages,function(C,D){if(D.page.category=="project"){console.log(D);A.push("<li><a href="+D.page.uri+">"+D.page.title+"</a></li>")}});$("#listofprojects").append(A)})});
+$(document).ready(function(){var A=[];$.each(getPagesData().pages,function(B,C){if(C.page.category=="project"){console.log(C);A.push("<li><a href="+C.page.uri+">"+C.page.title+"</a></li>")}});$("#listofprojects").append(A)});
