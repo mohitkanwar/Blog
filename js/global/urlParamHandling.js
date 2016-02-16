@@ -1,0 +1,1 @@
+var getUrlParameter=function getUrlParameter(A){var D=decodeURIComponent(window.location.search.substring(1)),C=D.split("&"),E,B;for(B=0;B<C.length;B++){E=C[B].split("=");if(E[0]===A){return E[1]===undefined?true:E[1]}}};
